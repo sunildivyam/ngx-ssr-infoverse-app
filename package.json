@@ -1,0 +1,42 @@
+{
+  "name": "@annuadvent/ngx-ssr-infoverse-app",
+  "version": "1.0.0",
+  "private": true,
+  "author": "Annu advent",
+  "license": "MIT",
+  "description": "Explore the Annu Advent App - Your Gateway to Knowledge and Exploration! Immerse yourself in a world of insightful articles and captivating stories on technology, business, research, education, and more. Engage in brain-teasing quizzes and broaden your horizons. Download now to unlock a universe of information and discovery.",
+  "keywords": [
+    "Angular",
+    "SSR",
+    "app",
+    "Information App",
+    "Knowledge Exploration",
+    "Insightful Articles",
+    "Captivating Stories",
+    "Technology",
+    "Business",
+    "Research",
+    "Education",
+    "Brain Teasing Quizzes",
+    "Continuous Learning",
+    "Global Knowledge",
+    "Interactive Learning",
+    "Informative Reads",
+    "Engaging Trivia",
+    "App Download"
+  ],
+  "homepage": "https://github.com/sunildivyam/ngx-ssr-infoverse-app",
+  "bugs": "https://github.com/sunildivyam/ngx-ssr-infoverse-app/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunildivyam/ngx-ssr-infoverse-app.git"
+  },
+  "engines": {
+    "node": "18.16.0",
+    "npm": "9.5.1"
+  },
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
+}
