@@ -2,7 +2,7 @@
   <anu-spinner id="app-spinner" [fullscreen]="true" [show]="appSpinner.isLoading" [mode]="SpinnerMode.Progress"
     size="md"></anu-spinner>
   <!-- App Header -->
-  <anu-menu class="flex-container primary-dark-grad center" [items]="mainMenuItems"
+  <anu-menu class="flex-container primary-dark-grad-v center" [items]="mainMenuItems"
     [logoUrl]="'/assets/annu-advent-logo.png'" [heading]="appConfig.name || ''"
     [subHeading]="appConfig.metaInfo.title || ''" (openStatusChanged)="mainMenuOpenStatusChanged($event)"
     [opened]="isMainNavOpen" [headingHref]="['./']">
