@@ -7,23 +7,29 @@ import {
 } from '@annuadvent/ngx-tools/fire-auth';
 import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
+import { Article } from '@annuadvent/ngx-cms/article';
+import { ArticlesDataService } from '../../services/articles-data.service';
 
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'app-dashboard-home',
+  templateUrl: './dashboard-home.component.html',
+  styleUrls: ['./dashboard-home.component.scss'],
 })
-export class DashboardComponent implements OnInit, OnDestroy {
+export class DashboardHomeComponent implements OnInit, OnDestroy {
   private dashboardMetaInfo: MetaInfo;
   isAuthor: boolean = false;
   isAdmin: boolean = false;
   routeEndEvent: Subscription;
+  helpArticles: Array<Article> = [];
+  errorCode: string = '';
+  errorMessage: string = '';
 
   constructor(
     public fireAuthService: FireAuthService,
     private metaService: MetaService,
     private appConfigService: AppConfigService,
+    private articlesDataService: ArticlesDataService,
     public route: ActivatedRoute,
     private router: Router
   ) {
@@ -35,7 +41,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         if (!this.route.firstChild) {
           this.metaService.setPageMeta({
             ...this.dashboardMetaInfo,
-            title: `${this.appConfigService.config.metaInfo.title} - ${this.dashboardMetaInfo.title}`,
+            title: `${this.dashboardMetaInfo.title} - ${this.appConfigService.config.metaInfo.title}`,
           });
         }
       });
@@ -44,6 +50,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.isAuthorFn();
     this.isAdminFn();
+    this.getHelpDocs();
+
     this.metaService.setPageMeta({
       ...this.dashboardMetaInfo,
       title: `${this.appConfigService.config.metaInfo.title} - ${this.dashboardMetaInfo.title}`,
@@ -72,4 +80,15 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   public onOutletActivated(): void { }
 
+  public async getHelpDocs() {
+    this.errorCode = '';
+    this.errorMessage = '';
+
+    this.helpArticles = await this.articlesDataService.getHelpDocs()
+      .catch(err => {
+        this.errorCode = err.code || err.status || 'UNKNOWN';
+        this.errorMessage = err.message || err.text || err || 'Something went wrong';
+        return null;
+      });
+  }
 }

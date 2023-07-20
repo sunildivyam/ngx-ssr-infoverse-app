@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
-import { FireAuthModule } from '@annuadvent/ngx-tools/fire-auth';
+import { ApiInterceptor, FireAuthModule, FirebaseInterceptor } from '@annuadvent/ngx-tools/fire-auth';
 import { AppCoreModule, AppStateService, appInit } from './modules/app-core';
 import { AppConfigModule, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsModule } from '@annuadvent/ngx-core/utils';
@@ -14,12 +14,14 @@ import { MenuModule } from '@annuadvent/ngx-common-ui/menu';
 import { FooterNavModule } from '@annuadvent/ngx-common-ui/footer-nav';
 import { ThemeFontResizerModule } from '@annuadvent/ngx-common-ui/theme-font-resizer';
 import { BreadcrumbModule } from '@annuadvent/ngx-common-ui/breadcrumb';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     AppCoreModule,
@@ -34,6 +36,16 @@ import { BreadcrumbModule } from '@annuadvent/ngx-common-ui/breadcrumb';
     BreadcrumbModule,
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: FirebaseInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApiInterceptor,
+      multi: true,
+    },
     {
       provide: APP_INITIALIZER,
       useFactory: appInit,

@@ -10,11 +10,11 @@ import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 
 @Component({
-  selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  selector: 'app-about-us',
+  templateUrl: './about-us.component.html',
+  styleUrls: ['./about-us.component.scss']
 })
-export class ContactUsComponent {
+export class AboutUsComponent {
   pageMeta: MetaInfo = null;
   libsInfoArr: Array<LibInfo> = null;
   appDescription: string = '';
@@ -35,7 +35,7 @@ export class ContactUsComponent {
         this.utilsService.nauturalJoinArray(this.libsInfoArr.map(libInfo => libInfo.name)));
 
 
-      this.pageMeta = this.appMetaService.setCorePageMeta(CoreMetaInfoEnum.contactUs, this.libsInfoArr.map(libInfo => libInfo.name));
+      this.pageMeta = this.appMetaService.setCorePageMeta(CoreMetaInfoEnum.aboutUs, this.libsInfoArr.map(libInfo => libInfo.name));
     })
   }
 }

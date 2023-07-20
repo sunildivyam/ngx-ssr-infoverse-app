@@ -1,0 +1,57 @@
+@import 'mixins';
+
+:host {
+    width: 100%;
+
+    .image-container {
+        margin: calc(-1/2 * var(--anu-spacing));
+
+        @include small {
+            overflow-y: hidden;
+            max-height: 10rem;
+        }
+
+        @include medium {
+            overflow-y: hidden;
+            max-height: 15rem;
+        }
+
+        @include large {
+            overflow-y: hidden;
+            max-height: 20rem;
+        }
+    }
+
+    .slidehow_item {
+        white-space: normal;
+
+        @include small {
+            width: 25rem;
+        }
+
+        @include medium {
+            width: 50rem;
+        }
+
+        @include large {
+            width: 50rem;
+        }
+
+        h3,
+        span,
+        p,
+        a {
+            @include small {
+                font-size: 0.7rem;
+            }
+
+            @include medium {
+                font-size: 0.9rem;
+            }
+
+            @include large {
+                font-size: 1rem;
+            }
+        }
+    }
+}

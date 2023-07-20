@@ -10,14 +10,17 @@ import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 
 @Component({
-  selector: 'app-contact-us',
-  templateUrl: './contact-us.component.html',
-  styleUrls: ['./contact-us.component.scss']
+  selector: 'app-terms-and-conditions',
+  templateUrl: './terms-and-conditions.component.html',
+  styleUrls: ['./terms-and-conditions.component.scss']
 })
-export class ContactUsComponent {
+export class TermsAndConditionsComponent {
   pageMeta: MetaInfo = null;
   libsInfoArr: Array<LibInfo> = null;
   appDescription: string = '';
+  companyName: string = '';
+  siteEmail: string = '';
+  naturalLibNames: string = '';
 
   constructor(
     private appStateService: AppStateService,
@@ -25,9 +28,13 @@ export class ContactUsComponent {
     private appConfigService: AppConfigService,
     private utilsService: UtilsService,
   ) {
+    this.companyName = this.appConfigService.config?.name || '';
+    this.siteEmail = this.appConfigService.config?.siteEmail || '';
+
     this.appStateService.appState.subscribe((appState: AppState) => {
       this.libsInfoArr = Object.values(appState[APP_STATE_KEYS.libsInfo] as LibsInfo || {});
 
+      this.naturalLibNames = this.utilsService.nauturalJoinArray(this.libsInfoArr.map(libInfo => libInfo.name));
 
       this.appDescription = this.appConfigService.config?.metaInfo?.description || '';
       this.appDescription = this.appDescription.replace(
@@ -35,7 +42,7 @@ export class ContactUsComponent {
         this.utilsService.nauturalJoinArray(this.libsInfoArr.map(libInfo => libInfo.name)));
 
 
-      this.pageMeta = this.appMetaService.setCorePageMeta(CoreMetaInfoEnum.contactUs, this.libsInfoArr.map(libInfo => libInfo.name));
+      this.pageMeta = this.appMetaService.setCorePageMeta(CoreMetaInfoEnum.tnc, this.libsInfoArr.map(libInfo => libInfo.name));
     })
   }
 }
