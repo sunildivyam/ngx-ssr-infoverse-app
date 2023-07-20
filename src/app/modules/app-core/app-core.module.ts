@@ -9,7 +9,6 @@ import { ModalModule } from '@annuadvent/ngx-common-ui/modal';
 import { FireStorageModule } from '@annuadvent/ngx-tools/fire-storage';
 import { SpinnerModule } from '@annuadvent/ngx-common-ui/spinner';
 import { UtilsModule } from '@annuadvent/ngx-core/utils';
-import { SitemapComponent } from './components/sitemap/sitemap.component';
 import { FireCommonModule } from '@annuadvent/ngx-tools/fire-common';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { TermsAndConditionsComponent } from './components/terms-and-conditions/terms-and-conditions.component';
@@ -22,7 +21,6 @@ import { RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     LoginComponent,
-    SitemapComponent,
     ContactUsComponent,
     AboutUsComponent,
     TermsAndConditionsComponent,
@@ -43,7 +41,6 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     LoginComponent,
-    SitemapComponent,
     ContactUsComponent,
     AboutUsComponent,
     TermsAndConditionsComponent,

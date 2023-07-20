@@ -67,11 +67,11 @@ export class ManageCategoriesPageComponent {
 
   ngOnInit(): void {
     this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig;
-    const dashboardMyCategoriesMetaInfo = (this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig).dashboardMetaInfo;
+    const dashboardMyCategoriesMetaInfo = (this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig)?.dashboardMetaInfo;
 
     this.metaService.setPageMeta({
       ...dashboardMyCategoriesMetaInfo,
-      title: `${dashboardMyCategoriesMetaInfo.title}`,
+      title: `${dashboardMyCategoriesMetaInfo?.title}`,
     });
   }
 

@@ -12,10 +12,10 @@ import { AppSitemapService } from '../../services/app-sitemap.service';
 
 @Component({
   selector: 'app-sitemap',
-  templateUrl: './sitemap.component.html',
-  styleUrls: ['./sitemap.component.scss']
+  templateUrl: './sitemap-page.component.html',
+  styleUrls: ['./sitemap-page.component.scss']
 })
-export class SitemapComponent {
+export class SitemapPageComponent {
   sitemapInfo: SitemapInfo = null;
   sitemap: Sitemap = null;
   newSitemap: Sitemap = null;

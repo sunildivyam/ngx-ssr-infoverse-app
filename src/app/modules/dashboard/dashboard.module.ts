@@ -24,6 +24,10 @@ import { MultiSelectBoxModule } from '@annuadvent/ngx-common-ui/multi-select-box
 import { CollapsibleModule } from '@annuadvent/ngx-common-ui/collapsible';
 import { OpenaiAutoArticlesModule } from '@annuadvent/ngx-cms/openai-auto-articles';
 import { FiltersModule } from '@annuadvent/ngx-common-ui/filters';
+import { OpenaiModule } from '@annuadvent/ngx-tools/openai';
+import { OpenaiPageComponent } from './components/openai-page/openai-page.component';
+import { SitemapPageComponent } from './components/sitemap-page/sitemap-page.component';
+import { FireStorageModule } from '@annuadvent/ngx-tools/fire-storage';
 
 
 @NgModule({
@@ -33,6 +37,8 @@ import { FiltersModule } from '@annuadvent/ngx-common-ui/filters';
     ManageCategoriesPageComponent,
     ManageStoriesPageComponent,
     ManageStoryPageComponent,
+    OpenaiPageComponent,
+    SitemapPageComponent,
   ],
   imports: [
     CommonModule,
@@ -53,7 +59,9 @@ import { FiltersModule } from '@annuadvent/ngx-common-ui/filters';
     CollapsibleModule,
     FiltersModule,
     OpenaiAutoArticlesModule,
+    OpenaiModule,
     ErrorModule,
+    FireStorageModule,
   ],
   exports: [
     DashboardHomeComponent,
@@ -61,6 +69,8 @@ import { FiltersModule } from '@annuadvent/ngx-common-ui/filters';
     ManageCategoriesPageComponent,
     ManageStoriesPageComponent,
     ManageStoryPageComponent,
+    OpenaiPageComponent,
+    SitemapPageComponent,
   ],
   providers: [],
 })
