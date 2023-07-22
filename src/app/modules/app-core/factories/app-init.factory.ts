@@ -25,8 +25,9 @@ export function appInit(
   fireCommonService.firebaseConfig = appConfigService.config.firebase;
 
   // Sequential promises are needed here for navCategories. For other you can have parallel promises.
+
   const allPromises = Promise.all([
-    appStateService.setState(APP_STATE_KEYS.mainNavItems),
+    appStateService.setState(APP_STATE_KEYS.allLiveCategories),
   ])
 
   return () => allPromises;

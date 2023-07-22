@@ -12,6 +12,10 @@ export class ManageCategoriesResolver {
   constructor(private categoriesDataService: CategoriesDataService) { }
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<PageCategories> {
+    // if child route is active, then no need to fetch categories
+    if (route.firstChild) {
+      return null;
+    }
 
     return this.categoriesDataService.getMyCategories();
   }

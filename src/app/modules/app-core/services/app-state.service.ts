@@ -35,8 +35,13 @@ export class AppStateService {
     return this.appState$.value;
   }
 
+  public getDynamicStateName(stateSegments: Array<string>): string {
+    return stateSegments.join('_');
+  }
+
   public async setState(stateName: string, stateParams: AppStateParams = null): Promise<AppState> {
-    if (!this.isStateNameValid(stateName)) throw new Error(`${stateName} state key does not exist in AppState. Please add it to APP_STATE_KEYS, before using it.`);
+    // Commented this to add support for dynamic stateNames
+    // if (!this.isStateNameValid(stateName)) throw new Error(`${stateName} state key does not exist in AppState. Please add it to APP_STATE_KEYS, before using it.`);
 
     // get state value from cache
     let stateValue: any = this.appState$.value[stateName];

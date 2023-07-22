@@ -1,24 +1,20 @@
-<anu-card class="">
-    <anu-card-body>
-        <div class="flex-container">
-            <div class="left col-12 relative">
-                <ng-container *ngIf="found">
-                    <anu-category-editor [value]="category" [enableDelete]="isAdmin && !isNewCategoryPage"
-                        [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId"
-                        [enableReadonlyIdToggle]="isAdmin" [imageHelpText]="imageHelpText" [readonlyId]="true"
-                        [readonlyTitle]="!isNewCategoryPage" (isLiveClicked)="isLiveClicked($event)"
-                        (inReviewClicked)="inReviewClicked($event)" (saveClicked)="saveClicked($event)"
-                        (deleteClicked)="deleteClicked($event)" (changed)="categoryChanged($event)">
-                    </anu-category-editor>
-                </ng-container>
-                <div>
-                    <anu-error *ngIf="error" [code]="error.code" [message]="error.message"></anu-error>
-                    <anu-spinner [show]="loading"></anu-spinner>
-                </div>
-            </div>
+<div class="flex-container">
+    <div class="left container relative">
+        <ng-container *ngIf="found">
+            <anu-category-editor class="container" [value]="category" [enableDelete]="isAdmin && !isNewCategoryPage"
+                [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId"
+                [enableReadonlyIdToggle]="isAdmin" [imageHelpText]="imageHelpText" [readonlyId]="true"
+                [readonlyTitle]="!isNewCategoryPage" (isLiveClicked)="isLiveClicked($event)"
+                (inReviewClicked)="inReviewClicked($event)" (saveClicked)="saveClicked($event)"
+                (deleteClicked)="deleteClicked($event)" (changed)="categoryChanged($event)">
+            </anu-category-editor>
+        </ng-container>
+        <div>
+            <anu-error *ngIf="error" [code]="error.code" [message]="error.message"></anu-error>
+            <anu-spinner [show]="loading"></anu-spinner>
         </div>
-    </anu-card-body>
-</anu-card>
+    </div>
+</div>
 
 <!-- Modal Confirmation box -->
 <anu-modal [enableCancel]="true" [enableClose]="true" [enableOk]="true" [opened]="showModal"

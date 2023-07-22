@@ -37,7 +37,11 @@ export const routes: Routes = [
         runGuardsAndResolvers: 'always',
     },
     {
-        path: 'story',
+        path: 'genre',
+        loadChildren: () => import('../modules/categories/categories.module').then(m => m.CategoriesModule),
+    },
+    {
+        path: 'stories',
         loadChildren: () => import('../modules/stories/stories.module').then(m => m.StoriesModule),
     },
     {

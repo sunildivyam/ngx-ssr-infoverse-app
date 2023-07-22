@@ -1,8 +1,8 @@
-<div class="flex-container secondary-lighter-bg spacing-around-vertical">
+<div class="flex-container secondary-lighter-grad spacing-around-vertical">
     <div class="left col-12">
         <anu-card class="col-12 spacing">
             <anu-card-title *ngIf="!route.firstChild">
-                <h2> My Articles</h2>
+                <h1> My Articles</h1>
             </anu-card-title>
             <anu-card-body *ngIf="!route.firstChild">
                 <p>
@@ -12,15 +12,18 @@
             <anu-card-footer class="row spacing-around-vertical right">
                 <ng-container *ngIf="route.firstChild">
                     <div class="col-12 center">
-                        <h2>Article Form</h2>
+                        <h1>Article Form</h1>
                         <p>Update article details and publish.</p>
                     </div>
                     <div class="row stretch">
-                        <a [routerLink]="['.']">Back to Articles</a>
+                        <a [routerLink]="['.']">◀ Back to Articles</a>
                         <a [routerLink]="['add']">Add new Article</a>
                     </div>
                 </ng-container>
-                <a *ngIf="!route.firstChild" [routerLink]="['add']">Add new Article</a>
+                <div *ngIf="!route.firstChild" class="row stretch">
+                    <a [routerLink]="['../']">◀ Back to Dashboard</a>
+                    <a [routerLink]="['add']">Add new Article</a>
+                </div>
             </anu-card-footer>
         </anu-card>
     </div>

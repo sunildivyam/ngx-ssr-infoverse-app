@@ -30,23 +30,19 @@
             </div>
         </div>
     </ng-container>
-    <div class="left col-12">
-        <anu-card class="form-body col-12 spacing-lg relative">
-            <anu-card-body>
-                <ng-container *ngIf="found">
-                    <anu-article-editor [categories]="categories" [value]="article" [enableOpenai]="isAdmin"
-                        [enableDelete]="isAdmin && !isNewArticlePage" [enablePublish]="isAdmin && !isNewArticlePage"
-                        [enableUniqueId]="postfixUniqueId" [enableReadonlyIdToggle]="isAdmin" [enableFeatures]="isAdmin"
-                        [imageHelpText]="imageHelpText" [readonlyId]="true" [readonlyTitle]="!isNewArticlePage"
-                        (isLiveClicked)="isLiveClicked($event)" (inReviewClicked)="inReviewClicked($event)"
-                        (saveClicked)="saveClicked($event)" (deleteClicked)="deleteClicked($event)"
-                        (changed)="articleChanged($event)">
-                    </anu-article-editor>
-                </ng-container>
-                <anu-error *ngIf="error" [code]="error.code" [message]="error.message"></anu-error>
-                <anu-spinner [show]="loading"></anu-spinner>
-            </anu-card-body>
-        </anu-card>
+    <div class="left form-body container spacing-lg relative">
+        <ng-container *ngIf="found">
+            <anu-article-editor class="container" [categories]="categories" [value]="article" [enableOpenai]="isAdmin"
+                [enableDelete]="isAdmin && !isNewArticlePage" [enablePublish]="isAdmin && !isNewArticlePage"
+                [enableUniqueId]="postfixUniqueId" [enableReadonlyIdToggle]="isAdmin" [enableFeatures]="isAdmin"
+                [imageHelpText]="imageHelpText" [readonlyId]="true" [readonlyTitle]="!isNewArticlePage"
+                (isLiveClicked)="isLiveClicked($event)" (inReviewClicked)="inReviewClicked($event)"
+                (saveClicked)="saveClicked($event)" (deleteClicked)="deleteClicked($event)"
+                (changed)="articleChanged($event)">
+            </anu-article-editor>
+        </ng-container>
+        <anu-error *ngIf="error" [code]="error.code" [message]="error.message"></anu-error>
+        <anu-spinner [show]="loading"></anu-spinner>
     </div>
 </div>
 
