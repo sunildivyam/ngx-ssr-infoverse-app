@@ -6,6 +6,7 @@ import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { Article, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { APP_STATE_KEYS, AppState, AppStateService } from '../../../app-core';
+import { ARROWS } from '../../../app-core/constants/app-icons.constants';
 
 @Component({
   selector: 'app-categories-home-page',
@@ -17,6 +18,7 @@ export class CategoriesHomePageComponent {
   navigationEndSubscription: Subscription;
   allCategoriesArticles: Array<Article> = [];
   notFoundCategoryId: string = '';
+  ARROWS = ARROWS;
 
   constructor(
     public route: ActivatedRoute,

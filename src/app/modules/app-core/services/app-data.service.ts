@@ -4,6 +4,7 @@ import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { MenuItem } from '@annuadvent/ngx-common-ui/menu';
 import { FireArticlesHttpService, FireCategoriesHttpService, PageArticles, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Category } from '@annuadvent/ngx-cms/category';
+import { Article, ArticleFeatures } from '@annuadvent/ngx-cms/article';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,12 @@ export class AppDataService {
         break;
       case APP_STATE_KEYS.pageCategoryGroups:
         value = await this.getCategoryPageGroups(params);
+        break;
+      case APP_STATE_KEYS.articlesByFeatures:
+        value = await this.getArticlesByFeatures();
+        break;
+      case APP_STATE_KEYS.article:
+        value = await this.getArticleById(params);
         break;
       // case APP_STATE_KEYS.somestateKey:
       //   value = await this.getValueForSomeStateKey(params);
@@ -88,6 +95,43 @@ export class AppDataService {
         return null;
       });
   }
+
+  private async getArticlesByFeatures(): Promise<Array<Article>> {
+
+    return await this.fireArticlesHttpService
+      .getLiveOnePageShallowArticlesByFeatures(
+        [
+          ArticleFeatures.featured,
+          ArticleFeatures.primeShow,
+          ArticleFeatures.footerShow,
+          ArticleFeatures.mainShow,
+          ArticleFeatures.featured,
+        ],
+        true
+      )
+      .then((pageArticles: PageArticles) => pageArticles.articles)
+      .catch(err => {
+        console.error(err);
+        return null;
+      });
+  }
+
+  private async getArticleById(params: any): Promise<Article> {
+    if (!params) {
+      console.error(`Article id is required.`);
+      return null;
+    }
+
+    return await this.fireArticlesHttpService
+      .getLiveArticle(
+        params?.articleId
+      )
+      .catch(err => {
+        console.error(err);
+        return null;
+      });
+  }
+
 
   // This is the sample pattern to follow to get and serve data.
   // public async getValueForSomeStateKey(params: any) {

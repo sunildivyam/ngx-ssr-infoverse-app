@@ -21,16 +21,16 @@
                     <a *ngIf="endPage" [routerLink]="['.']"
                         [queryParams]="{page: endPage, pdir: 'f'}">{{category?.metaInfo?.title}}
                         <strong>More stories
-                            ►</strong></a>
+                            {{ARROWS.RIGHT}}</strong></a>
                     <a *ngIf="!endPage" [routerLink]="['.']">{{category?.metaInfo?.title}}
                         <strong>More stories
-                            ►</strong></a>
+                            {{ARROWS.RIGHT}}</strong></a>
                 </div>
             </div>
             <anu-article class="shadow spacing-around-vertical col-12" *ngFor="let article of categoryArticles"
                 [titleHref]="['../../stories', article?.id || '']" [readMoreHref]="['../../stories', article?.id || '']"
                 [value]="article" [descriptionCharCount]="200" [showMetaInfo]="false" [isRowLayout]="true"
-                [readMoreLabel]="'Full story ►'"></anu-article>
+                [readMoreLabel]="'Full story ' + ARROWS.RIGHT"></anu-article>
 
             <div class="row stretch nowrap spacing spacing-around-vertical secondary-lightest-bg">
                 <div>
@@ -40,17 +40,18 @@
                     <a *ngIf="endPage" [routerLink]="['.']"
                         [queryParams]="{page: endPage, pdir: 'f'}">{{category?.metaInfo?.title}}
                         <strong>More stories
-                            ►</strong></a>
+                            {{ARROWS.RIGHT}}</strong></a>
                     <a *ngIf="!endPage" [routerLink]="['.']">{{category?.metaInfo?.title}}
                         <strong>More stories
-                            ►</strong></a>
+                            {{ARROWS.RIGHT}}</strong></a>
                 </div>
             </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-3">
             <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
                 <anu-category-articles-list [categoryHref]="'../'" [articleHref]="'../../stories/'"
-                    readMoreLabel="Explore more stories ►" class="spacing border border-round spacing-around-vertical"
+                    [readMoreLabel]="'Explore more stories ' + ARROWS.RIGHT"
+                    class="spacing border border-round spacing-around-vertical"
                     [category]="pageCatGroup?.category || null" [articles]="pageCatGroup?.pageArticles?.articles || []"
                     [headerClassNames]="['border', 'border-round', 'primary-lightest-grad-h', 'spacing-horizontal']"
                     [listClassNames]="[]"></anu-category-articles-list>

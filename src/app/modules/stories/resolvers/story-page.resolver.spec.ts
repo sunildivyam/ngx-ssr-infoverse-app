@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
-import { StoriesHomePageResolver } from './stories-home-page.resolver';
+import { StoryPageResolver } from './story-page.resolver';
 
-describe('StoriesHomePageResolver', () => {
-  let resolver: StoriesHomePageResolver;
+describe('StoryPageResolver', () => {
+  let resolver: StoryPageResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    resolver = TestBed.inject(StoriesHomePageResolver);
+    resolver = TestBed.inject(StoryPageResolver);
   });
 
   it('should be created', () => {

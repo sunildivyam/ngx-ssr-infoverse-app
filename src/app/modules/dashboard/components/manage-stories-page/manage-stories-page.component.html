@@ -16,12 +16,12 @@
                         <p>Update article details and publish.</p>
                     </div>
                     <div class="row stretch">
-                        <a [routerLink]="['.']">◀ Back to Articles</a>
+                        <a [routerLink]="['.']">{{ARROWS.LEFT}} Back to Articles</a>
                         <a [routerLink]="['add']">Add new Article</a>
                     </div>
                 </ng-container>
                 <div *ngIf="!route.firstChild" class="row stretch">
-                    <a [routerLink]="['../']">◀ Back to Dashboard</a>
+                    <a [routerLink]="['../']">{{ARROWS.LEFT}} Back to Dashboard</a>
                     <a [routerLink]="['add']">Add new Article</a>
                 </div>
             </anu-card-footer>

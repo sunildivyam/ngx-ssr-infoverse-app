@@ -7,7 +7,7 @@ import { PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryHomePageResolver {
+export class CategoriesHomePageResolver {
   constructor(
     private AppStateService: AppStateService,
     private appConfigService: AppConfigService,

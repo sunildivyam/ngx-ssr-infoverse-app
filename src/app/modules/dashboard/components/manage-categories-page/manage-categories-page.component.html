@@ -16,12 +16,12 @@
                         <p>Update category details and publish.</p>
                     </div>
                     <div class="row stretch">
-                        <a [routerLink]="['.']">◀ Back to Categories</a>
+                        <a [routerLink]="['.']">{{ARROWS.LEFT}} Back to Categories</a>
                         <a [routerLink]="['add']">Add new Category</a>
                     </div>
                 </ng-container>
                 <div *ngIf="!route.firstChild" class="row stretch">
-                    <a [routerLink]="['../']">◀ Back to Dashboard</a>
+                    <a [routerLink]="['../']">{{ARROWS.LEFT}} Back to Dashboard</a>
                     <a [routerLink]="['add']">Add new Category</a>
                 </div>
             </anu-card-footer>

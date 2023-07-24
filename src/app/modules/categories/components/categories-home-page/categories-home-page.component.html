@@ -8,7 +8,7 @@
         <div class="col-12 center">
             <span>Are you looking for <strong>{{notFoundCategoryId.split('-').join('
                     ')}}</strong> related stories?</span>
-            <span>Explore related stories ▼</span>
+            <span>Explore related stories {{ARROWS.DOWN}}</span>
         </div>
     </div>
 </div>
@@ -49,14 +49,16 @@
                         class="category-home-page_article-card border border-round spacing-around-vertical"
                         [value]="article || null" [showDescription]="true" [descriptionCharCount]="150"
                         [showMetaInfo]="false" [titleHref]="['../', 'stories', article?.id]"
-                        [readMoreHref]="['../', 'stories', article?.id]" [readMoreLabel]="'Full story ►'"></anu-article>
+                        [readMoreHref]="['../', 'stories', article?.id]"
+                        [readMoreLabel]="'Full story ' + ARROWS.RIGHT"></anu-article>
                 </ng-container>
             </div>
         </div>
         <div class="col-sm-12 col-md-4 col-lg-3">
             <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
                 <anu-category-articles-list [categoryHref]="'./'" [articleHref]="'../stories/'"
-                    readMoreLabel="Explore more stories ►" class="spacing border border-round spacing-around-vertical"
+                    [readMoreLabel]="'Explore more stories ' + ARROWS.RIGHT"
+                    class="spacing border border-round spacing-around-vertical"
                     [category]="pageCatGroup?.category || null" [articles]="pageCatGroup?.pageArticles?.articles || []"
                     [headerClassNames]="['border', 'border-round', 'primary-lightest-grad-h', 'spacing-horizontal']"
                     [listClassNames]="[]"></anu-category-articles-list>
@@ -69,6 +71,6 @@
 <router-outlet></router-outlet>
 
 <div *ngIf="route.firstChild" class="flex-container spacing secondary-lighter-grad">
-    <h2><a [routerLink]="['./']">◀ Explore Stories, Quizes and more</a>
+    <h2><a [routerLink]="['./']">{{ARROWS.LEFT}} Explore Stories, Quizes and more</a>
     </h2>
 </div>

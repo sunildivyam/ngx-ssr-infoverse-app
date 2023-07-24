@@ -9,6 +9,7 @@ import { Subscription, filter } from 'rxjs';
 import { MY_ARTICLES_FILTERS, MY_ARTICLES_FILTERS_FOR_ADMIN } from '../../constants/stories.constants';
 import { DashboardConfig } from '../../../../interfaces/dashboard-config.interface';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
+import { ARROWS } from '../../../app-core/constants/app-icons.constants';
 
 @Component({
   selector: 'app-manage-stories-page',
@@ -26,6 +27,7 @@ export class ManageStoriesPageComponent {
   error: any;
   routeStartEvent: Subscription;
   routeEndEvent: Subscription;
+  ARROWS = ARROWS;
 
   constructor(
     public route: ActivatedRoute,

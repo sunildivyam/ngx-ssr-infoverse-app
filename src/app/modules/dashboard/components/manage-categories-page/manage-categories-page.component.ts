@@ -9,6 +9,7 @@ import { Subscription, filter } from 'rxjs';
 import { MY_CATEGORIES_FILTERS, MY_CATEGORIES_FILTERS_FOR_ADMIN } from '../../constants/categories.constants';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { DashboardConfig } from '../../../../interfaces/dashboard-config.interface';
+import { ARROWS } from '../../../app-core/constants/app-icons.constants';
 
 @Component({
   selector: 'app-manage-categories-page',
@@ -26,6 +27,7 @@ export class ManageCategoriesPageComponent {
   error: any;
   routeStartEvent: Subscription;
   routeEndEvent: Subscription;
+  ARROWS = ARROWS;
 
   constructor(
     public route: ActivatedRoute,

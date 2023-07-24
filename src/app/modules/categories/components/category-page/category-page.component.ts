@@ -8,6 +8,7 @@ import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { APP_STATE_KEYS, AppState, AppStateService } from '../../../app-core';
+import { ARROWS } from '../../../app-core/constants/app-icons.constants';
 
 @Component({
   selector: 'app-category-page',
@@ -28,6 +29,7 @@ export class CategoryPageComponent {
   error: any;
   errorAllCategories: any;
   navigationEndSubscription: Subscription;
+  ARROWS = ARROWS;
 
   constructor(
     public route: ActivatedRoute,

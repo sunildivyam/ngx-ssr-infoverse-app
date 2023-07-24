@@ -4,6 +4,11 @@ import { CommonModule } from '@angular/common';
 import { StoriesRoutingModule } from './stories-routing.module';
 import { StoriesHomePageComponent } from './components/stories-home-page/stories-home-page.component';
 import { StoryPageComponent } from './components/story-page/story-page.component';
+import { ArticlesSlideshowModule } from '@annuadvent/ngx-cms/articles-slideshow';
+import { CardModule } from '@annuadvent/ngx-common-ui/card';
+import { ArticleModule } from '@annuadvent/ngx-cms/article';
+import { SlideshowModule } from '@annuadvent/ngx-common-ui/slideshow';
+import { ArticleViewModule } from '@annuadvent/ngx-cms/article-view';
 
 
 @NgModule({
@@ -13,7 +18,12 @@ import { StoryPageComponent } from './components/story-page/story-page.component
   ],
   imports: [
     CommonModule,
-    StoriesRoutingModule
+    StoriesRoutingModule,
+    ArticlesSlideshowModule,
+    CardModule,
+    ArticleModule,
+    SlideshowModule,
+    ArticleViewModule,
   ],
   exports: [
     StoriesHomePageComponent,
