@@ -3,7 +3,6 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Article } from '@annuadvent/ngx-cms/article';
 import { Category } from '@annuadvent/ngx-cms/category';
 import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
-import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
@@ -37,7 +36,6 @@ export class CategoryPageComponent {
     private router: Router,
     private utilsService: UtilsService,
     private ngZone: NgZone,
-    private appConfigService: AppConfigService,
     private appStateService: AppStateService,
   ) {
 
@@ -91,12 +89,12 @@ export class CategoryPageComponent {
   }
 
   public setPageMeta(): void {
-    const appConfig = this.appConfigService.config;
 
     if (!this.route.firstChild && this.category && this.category.id) {
       this.metaService.setPageMeta({
         ...this.category?.metaInfo as MetaInfo,
-        title: `${appConfig.metaInfo.title} - ${this.category?.metaInfo?.title}`
+        title: `${this.category?.metaInfo?.title}`,
+        url: `genre/${this.category?.id}`,
       });
     }
   }

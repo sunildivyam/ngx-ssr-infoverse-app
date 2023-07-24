@@ -1,12 +1,14 @@
 import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { Article, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { APP_STATE_KEYS, AppState, AppStateService } from '../../../app-core';
 import { ARROWS } from '../../../app-core/constants/app-icons.constants';
+import { CategoriesMetaService } from '../../services/categories-meta.service';
+import { CategoriesMetaInfoEnum } from '../../enums/categories-meta.enums';
 
 @Component({
   selector: 'app-categories-home-page',
@@ -14,6 +16,7 @@ import { ARROWS } from '../../../app-core/constants/app-icons.constants';
   styleUrls: ['./categories-home-page.component.scss']
 })
 export class CategoriesHomePageComponent {
+  pageMeta: MetaInfo = null;
   pageCategoryGroups: Array<PageCategoryGroup> = [];
   navigationEndSubscription: Subscription;
   allCategoriesArticles: Array<Article> = [];
@@ -22,7 +25,7 @@ export class CategoriesHomePageComponent {
 
   constructor(
     public route: ActivatedRoute,
-    private metaService: MetaService,
+    private categoriesMetaService: CategoriesMetaService,
     private router: Router,
     private utilsService: UtilsService,
     private ngZone: NgZone,
@@ -36,7 +39,12 @@ export class CategoriesHomePageComponent {
       this.initPageWithStateData(pageCategoryGroups);
     });
 
-    this.navigationEndSubscription = this.router.events.pipe(filter(ev => ev instanceof NavigationEnd)).subscribe(() => this.setPageMeta());
+    this.navigationEndSubscription = this.router.events.pipe(
+      filter(
+        ev => ev instanceof NavigationEnd)).subscribe(
+          () => {
+            this.pageMeta = this.categoriesMetaService.setCategoriesPageMeta(CategoriesMetaInfoEnum.categoriesHomePage);
+          });
 
     this.route.queryParams.subscribe((params) => {
       // Sets not found category and/or article ids, in case user is redirected here from respective pages.
@@ -60,10 +68,7 @@ export class CategoriesHomePageComponent {
       this.allCategoriesArticles = [...pcg.pageArticles.articles, ...this.allCategoriesArticles];
     });
 
-    this.setPageMeta();
+    this.pageMeta = this.categoriesMetaService.setCategoriesPageMeta(CategoriesMetaInfoEnum.categoriesHomePage);
   }
 
-  public setPageMeta(): void {
-    const appConfig = this.appConfigService.config;
-  }
 }

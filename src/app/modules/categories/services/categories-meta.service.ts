@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
-import { coreMetaInfo } from '../constants/app-core-meta.constants';
-import { CoreMetaInfoEnum } from '../enums/app-core-meta.enums';
+import { CategoriesMetaInfoEnum } from '../enums/categories-meta.enums';
+import { categoriesMetaInfo } from '../constants/categories-meta.constants';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AppMetaService {
+export class CategoriesMetaService {
 
   constructor(
     private metaService: MetaService,
@@ -37,31 +37,15 @@ export class AppMetaService {
     return pageMeta;
   }
 
-  public setCorePageMeta(pageName: CoreMetaInfoEnum, libNames: Array<string>): MetaInfo {
-    let { title, description, keywords } = coreMetaInfo[pageName];
-    const companyName = this.appConfigService.config.name;
-
-    title = title.replace('{{companyName}}', companyName);
-    description = description.replace('{{companyName}}', companyName);
-    description = description.replace('{{libNames}}', this.utilsService.nauturalJoinArray(libNames));
-    const keywordsArr: Array<string> = [
-      ...keywords.split(', '),
-      companyName,
-      ...libNames
-    ];
-
-    return this.setPageMeta(title, description, keywordsArr);
-  }
-
-  public setHomePageMeta(): MetaInfo {
-    let { title, description, keywords } = this.appConfigService.config.metaInfo;
+  public setCategoriesPageMeta(pageName: CategoriesMetaInfoEnum): MetaInfo {
+    let { title, description, keywords } = categoriesMetaInfo[pageName];
     const companyName = this.appConfigService.config.name;
 
     title = title.replace('{{companyName}}', companyName);
     description = description.replace('{{companyName}}', companyName);
     const keywordsArr: Array<string> = [
       ...keywords.split(', '),
-      companyName,
+      companyName
     ];
 
     return this.setPageMeta(title, description, keywordsArr);

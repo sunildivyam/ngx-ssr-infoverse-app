@@ -1,7 +1,12 @@
 import { MetaInfo } from "@annuadvent/ngx-common-ui/meta";
+import { CategoriesMetaInfoEnum } from "../enums/categories-meta.enums";
+import { CategoriesMetaInfo } from "../interfaces/categories-meta.interface";
 
-export const categoriesMetaInfo: MetaInfo = {
-    title: 'Explore stories, quizes and more - {{companyName}}',
-    description: 'Read and understand the Terms and Conditions (TNC) of {{companyName}}. This page outlines the rules, guidelines, and agreements governing the use of our Angular libraries, including {{libNames}}, as well as any associated Firebase functionality.',
-    keywords: 'Annu Advent, stories, latest news, latest stories, stories today',
-};
+export const categoriesMetaInfo: CategoriesMetaInfo = {
+
+    [CategoriesMetaInfoEnum.categoriesHomePage]: {
+        title: 'Explore Stories, News, Quizes and more - {{companyName}}',
+        description: `Explore a realm of captivating genres on {{companyName}} App's Genre Page. Immerse yourself in a collection of latest, featured, and prime stories tailored to your tastes. From technology, business, education, research, romance, health to thrilling mysteries, find the perfect narrative that ignites your passion. Navigate to other genres or discover diverse experiences on the Other Categories page. Begin your literary odyssey now!`,
+        keywords: 'Captivating Genres, Genre Page, Latest Stories, Featured Tales, Prime Narratives, Technoloy, Science,  Business, Research, Education, Stock Markets, Finnance, News, Heartwarming Romance, Thrilling Mysteries, Tailored Tastes, Literary Odyssey, Narrative Collection, Annu Advent App, Explore Genres, Other Categories, Genre Links, Diverse Experiences, Passionate Reads, Immerse Yourself',
+    } as MetaInfo,
+}

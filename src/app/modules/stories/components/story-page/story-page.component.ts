@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { Article, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
@@ -38,9 +38,7 @@ export class StoryPageComponent {
     public route: ActivatedRoute,
     private metaService: MetaService,
     private router: Router,
-    private utilsService: UtilsService,
     private ngZone: NgZone,
-    private appConfigService: AppConfigService,
     private appStateService: AppStateService,
   ) {
 
@@ -90,6 +88,12 @@ export class StoryPageComponent {
   }
 
   public setPageMeta(): void {
-    const appConfig = this.appConfigService.config;
+    if (this.article && this.article.id) {
+      this.metaService.setPageMeta({
+        ...this.article?.metaInfo as MetaInfo,
+        title: `${this.article?.metaInfo?.title}`,
+        url: `stories/${this.article?.id}`,
+      });
+    };
   }
 }

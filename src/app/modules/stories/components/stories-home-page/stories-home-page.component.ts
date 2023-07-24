@@ -1,8 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
-import { AppConfigService } from '@annuadvent/ngx-core/app-config';
-import { UtilsService } from '@annuadvent/ngx-core/utils';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { Article, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { AppStateService } from '../../../app-core/services/app-state.service';
@@ -11,6 +9,8 @@ import { APP_STATE_KEYS } from '../../../app-core/constants/app-state.constants'
 import { ArticleFeatures } from '@annuadvent/ngx-cms/article';
 import { Category } from '@annuadvent/ngx-cms/category';
 import { ARROWS } from '../../../app-core/constants/app-icons.constants';
+import { StoriesMetaInfoEnum } from '../../enums/stories-meta.enums';
+import { StoriesMetaService } from '../../services/stories-meta.service';
 
 @Component({
   selector: 'app-stories-home-page',
@@ -18,6 +18,7 @@ import { ARROWS } from '../../../app-core/constants/app-icons.constants';
   styleUrls: ['./stories-home-page.component.scss']
 })
 export class StoriesHomePageComponent {
+  pageMeta: MetaInfo = null;
   pageCategoryGroups: Array<PageCategoryGroup> = [];
   articlesByFeatures: Array<Article> = [];
   primeShowArticles: Array<Article> = [];
@@ -34,11 +35,8 @@ export class StoriesHomePageComponent {
 
   constructor(
     public route: ActivatedRoute,
-    private metaService: MetaService,
+    private categoriesMetaService: StoriesMetaService,
     private router: Router,
-    private utilsService: UtilsService,
-    private ngZone: NgZone,
-    private appConfigService: AppConfigService,
     private appStateService: AppStateService,
   ) {
 
@@ -80,6 +78,6 @@ export class StoriesHomePageComponent {
   }
 
   public setPageMeta(): void {
-    const appConfig = this.appConfigService.config;
+    this.pageMeta = this.categoriesMetaService.setStoriesPageMeta(StoriesMetaInfoEnum.storiesHomePage);
   }
 }

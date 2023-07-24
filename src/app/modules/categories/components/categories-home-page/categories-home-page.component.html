@@ -1,5 +1,5 @@
 <div *ngIf="!this.route.firstChild" class="flex-container primary-light-grad spacing-vertical">
-    <h1>Explore Stories, Quizes and more</h1>
+    <h1>{{pageMeta?.title}}</h1>
 </div>
 
 <!-- No category or article found message -->
@@ -34,6 +34,11 @@
             </anu-card>
         </div>
     </div>
+</div>
+
+<!-- Page Description -->
+<div *ngIf="!this.route.firstChild" class="flex-container spacing-vertical">
+    <p>{{pageMeta?.description}}</p>
 </div>
 
 <div *ngIf="!this.route.firstChild" class="flex-container primary-light-grad spacing-vertical">

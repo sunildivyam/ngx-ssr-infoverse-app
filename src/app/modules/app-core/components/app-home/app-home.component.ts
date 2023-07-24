@@ -1,6 +1,6 @@
 import { Component, NgZone } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfig, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { Article, PageCategoryGroup } from '@annuadvent/ngx-tools/fire-cms';
@@ -11,6 +11,7 @@ import { APP_STATE_KEYS } from '../../../app-core/constants/app-state.constants'
 import { ArticleFeatures } from '@annuadvent/ngx-cms/article';
 import { Category } from '@annuadvent/ngx-cms/category';
 import { ARROWS } from '../../../app-core/constants/app-icons.constants';
+import { AppMetaService } from '../../services/app-meta.service';
 
 @Component({
   selector: 'app-app-home',
@@ -18,6 +19,7 @@ import { ARROWS } from '../../../app-core/constants/app-icons.constants';
   styleUrls: ['./app-home.component.scss']
 })
 export class AppHomeComponent {
+  pageMeta: MetaInfo = null;
   pageCategoryGroups: Array<PageCategoryGroup> = [];
   articlesByFeatures: Array<Article> = [];
   primeShowArticles: Array<Article> = [];
@@ -36,7 +38,7 @@ export class AppHomeComponent {
 
   constructor(
     public route: ActivatedRoute,
-    private metaService: MetaService,
+    private appMetaService: AppMetaService,
     private router: Router,
     private utilsService: UtilsService,
     private ngZone: NgZone,
@@ -84,6 +86,6 @@ export class AppHomeComponent {
   }
 
   public setPageMeta(): void {
-    // todo
+    this.pageMeta = this.appMetaService.setHomePageMeta();
   }
 }
