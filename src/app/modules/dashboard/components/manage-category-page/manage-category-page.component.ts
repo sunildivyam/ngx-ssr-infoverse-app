@@ -45,6 +45,7 @@ export class ManageCategoryPageComponent {
     const imageSpecs = (this.appConfigService.firebase as FirebaseConfig).storage.imageDimensions;
 
     this.imageHelpText = this.getImageSpecsString(imageSpecs);
+
     this.paramsSubscription = this.route.params.subscribe(params => {
       this.categoryId = params['categoryId'];
       this.getCategory(this.categoryId);
@@ -109,6 +110,9 @@ export class ManageCategoryPageComponent {
     this.category = { ...category };
     this.error = null;
     this.loading = true;
+    // sets userid if not set already
+    this.category.userId = this.category.userId || this.fireAuthService.getCurrentUserId();
+
     let savePromise;
     if (this.isNewCategoryPage) {
       savePromise = this.fireCategoriesHttpService.addCategory(this.category);

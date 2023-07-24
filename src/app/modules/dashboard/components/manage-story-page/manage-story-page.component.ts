@@ -158,6 +158,10 @@ export class ManageStoryPageComponent {
     this.article = { ...article };
     this.error = null;
     this.loading = true;
+
+    // sets userid if not set already
+    this.article.userId = this.article.userId || this.fireAuthService.getCurrentUserId();
+
     let savePromise;
     if (this.isNewArticlePage) {
       savePromise = this.fireArticlesHttpService.addArticle(this.article);

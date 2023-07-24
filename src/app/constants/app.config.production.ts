@@ -10,7 +10,7 @@ export const appConfig: AppConfig = {
   logoutUrl: '/login',
   profileUrl: '/dashboard',
   adminEmail: 'sunil.divyam@gmail.com',
-  defaultPageSize: 5,
+  defaultPageSize: 6,
   tNcUrl: 'stories/terms-and-conditions',
   privacyPolicyUrl: 'stories/privacy-policy',
   contactUsUrl: 'stories/contact-us',
