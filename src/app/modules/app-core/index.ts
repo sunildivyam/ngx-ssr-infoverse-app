@@ -16,3 +16,4 @@ export * from './constants/app-core.constants';
 export * from './constants/app-state.constants';
 export * from './constants/app-core-meta.constants';
 export * from './enums/app-core-meta.enums';
+export * from './resolvers/app-home-page.resolver';

@@ -16,6 +16,8 @@ import { PrivacyComponent } from './components/privacy/privacy.component';
 import { AppHomeComponent } from './components/app-home/app-home.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RouterModule } from '@angular/router';
+import { ArticleModule } from '@annuadvent/ngx-cms/article';
+import { ArticlesSlideshowModule } from '@annuadvent/ngx-cms/articles-slideshow';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { RouterModule } from '@angular/router';
     FireStorageModule,
     UtilsModule,
     FireCommonModule,
+    ArticleModule,
+    ArticlesSlideshowModule,
   ],
   exports: [
     LoginComponent,

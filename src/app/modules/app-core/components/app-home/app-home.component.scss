@@ -3,54 +3,25 @@
 :host {
     width: 100%;
 
-    .image-container {
-        margin: calc(-1/2 * var(--anu-spacing));
+    .featured-articles {
+        overflow: hidden;
+        min-height: 4rem;
+        transition: all 0.5s ease-out;
+        background-size: cover;
+        background-repeat: no-repeat;
 
-        @include small {
-            overflow-y: hidden;
-            max-height: 10rem;
+        h2 {
+            line-height: 1.5;
+            font-size: 1rem;
+            color: var(--anu-accent-deep-light);
+            background-color: rgba(0, 0, 0, 0.7);
         }
 
-        @include medium {
-            overflow-y: hidden;
-            max-height: 15rem;
-        }
+        &:hover {
+            box-shadow: 0.1rem 0.1rem 0.5rem 0.1rem var(--anu-primary-darker);
 
-        @include large {
-            overflow-y: hidden;
-            max-height: 20rem;
-        }
-    }
-
-    .slidehow_item {
-        white-space: normal;
-
-        @include small {
-            width: 25rem;
-        }
-
-        @include medium {
-            width: 50rem;
-        }
-
-        @include large {
-            width: 50rem;
-        }
-
-        h3,
-        span,
-        p,
-        a {
-            @include small {
-                font-size: 0.7rem;
-            }
-
-            @include medium {
-                font-size: 0.9rem;
-            }
-
-            @include large {
-                font-size: 1rem;
+            h2 {
+                transform: rotate3d(1, 1, 1, 10deg);
             }
         }
     }
