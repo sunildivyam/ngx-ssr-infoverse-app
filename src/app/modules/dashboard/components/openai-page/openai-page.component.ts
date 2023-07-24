@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfig, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { Subscription, filter } from 'rxjs';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
 
 @Component({
   selector: 'app-openai-page',
@@ -10,6 +12,7 @@ import { Subscription, filter } from 'rxjs';
   styleUrls: ['./openai-page.component.scss']
 })
 export class OpenaiPageComponent {
+  pageMeta: MetaInfo = null;
   loading: boolean = true;
   error: any;
   routeStartEvent: Subscription;
@@ -19,7 +22,7 @@ export class OpenaiPageComponent {
   constructor(
     public route: ActivatedRoute,
     private router: Router,
-    private metaService: MetaService,
+    private dashboardMetaService: DashboardMetaService,
     private appConfigService: AppConfigService,
   ) {
     this.appConfig = this.appConfigService.config;
@@ -39,10 +42,7 @@ export class OpenaiPageComponent {
   }
 
   ngOnInit(): void {
-    // this.metaService.setPageMeta({
-    //   ...openaiArticlesMetaInfo,
-    //   title: `${appConfig.metaInfo.title} - ${openaiArticlesMetaInfo.title}`,
-    // });
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.openaiPage);
   }
 
   ngOnDestroy(): void {

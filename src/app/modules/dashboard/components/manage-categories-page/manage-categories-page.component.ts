@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Category } from '@annuadvent/ngx-cms/category';
 import { Filter, FilterTypes } from '@annuadvent/ngx-common-ui/filters';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { FIREBASE_AUTH_ROLES, FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
 import { PageCategories } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { MY_CATEGORIES_FILTERS, MY_CATEGORIES_FILTERS_FOR_ADMIN } from '../../constants/categories.constants';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
-import { DashboardConfig } from '../../../../interfaces/dashboard-config.interface';
 import { ARROWS } from '../../../app-core/constants/app-icons.constants';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
 
 @Component({
   selector: 'app-manage-categories-page',
@@ -17,6 +18,7 @@ import { ARROWS } from '../../../app-core/constants/app-icons.constants';
   styleUrls: ['./manage-categories-page.component.scss']
 })
 export class ManageCategoriesPageComponent {
+  pageMeta: MetaInfo = null;
   categories: Array<Category> = [];
   filteredCategories: Array<Category> = [];
   foundCategories: Array<Category> = [];
@@ -32,7 +34,7 @@ export class ManageCategoriesPageComponent {
   constructor(
     public route: ActivatedRoute,
     private router: Router,
-    private metaService: MetaService,
+    private dashboardMetaService: DashboardMetaService,
     private fireAuthService: FireAuthService,
     private appConfigService: AppConfigService,
   ) {
@@ -50,6 +52,8 @@ export class ManageCategoriesPageComponent {
       });
 
     this.route.data.subscribe(async (data) => {
+      this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.categoriesPage);
+
       const isAdmin = await this.fireAuthService.currentUserHasRole(
         FIREBASE_AUTH_ROLES.ADMIN
       );
@@ -59,6 +63,7 @@ export class ManageCategoriesPageComponent {
           ...MY_CATEGORIES_FILTERS_FOR_ADMIN,
         ];
       }
+
       const pageCategories: PageCategories = data['manageCategories'] as PageCategories;
       this.categories = pageCategories?.categories || [];
       this.foundCategories = this.categories;
@@ -68,13 +73,7 @@ export class ManageCategoriesPageComponent {
   }
 
   ngOnInit(): void {
-    this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig;
-    const dashboardMyCategoriesMetaInfo = (this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig)?.dashboardMetaInfo;
-
-    this.metaService.setPageMeta({
-      ...dashboardMyCategoriesMetaInfo,
-      title: `${dashboardMyCategoriesMetaInfo?.title}`,
-    });
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.categoriesPage);
   }
 
   ngOnDestroy(): void {

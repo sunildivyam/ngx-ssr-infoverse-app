@@ -1,13 +1,9 @@
-<div class="flex-container">
-    <h1 class="col-12 left">My Dashboard</h1>
-</div>
+<div *ngIf="!route.firstChild" class="flex-container secondary-lighter-grad spacing">
+    <h1 class="col-12 left">{{pageMeta?.title}}</h1>
 
-<div *ngIf="!route.firstChild" class="flex-container secondary-lighter-bg">
-    <div class="left col-12">
-        <p>Manage your profile and authored articles.</p>
-    </div>
+    <p>{{pageMeta?.description}}</p>
 </div>
-<div class="flex-container">
+<div class="flex-container spacing-around-vertical">
     <div class="row" *ngIf="!route.firstChild">
         <!--My Articles-->
         <anu-card *ngIf="isAuthor" class="col-sm-12 col-md-6 col-lg-4 shadow spacing" [routerLinkActive]="'active'">

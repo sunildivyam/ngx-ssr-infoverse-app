@@ -2,7 +2,7 @@ import { AppConfig } from '@annuadvent/ngx-core/app-config';
 
 export const appConfig: AppConfig = {
   name: 'annuadvent',
-  copyrightText: 'copyright©annuadvent',
+  copyrightText: 'copyright©annuadvent. All rights reserved.',
   themeName: 'skyBlue',
   apiBaseUrl: 'https://www.annuadvent.com', // When running prod on hosting server
   imagesSourceUrl: '/getImage?imageId=',
@@ -11,11 +11,10 @@ export const appConfig: AppConfig = {
   profileUrl: '/dashboard',
   adminEmail: 'sunil.divyam@gmail.com',
   defaultPageSize: 5,
-  tNcUrl: '/tnc/terms-and-conditions',
-  privacyPolicyUrl: '/privacy/privacy-policy',
-  contactUsUrl:
-    '/contact-us/contact-us-for-sales-enquiry-technology-consulting-business-consulting-research-consulting-or-a-general-enquiry',
-  aboutUsUrl: '/about-us/about-annu-advent',
+  tNcUrl: 'stories/terms-and-conditions',
+  privacyPolicyUrl: 'stories/privacy-policy',
+  contactUsUrl: 'stories/contact-us',
+  aboutUsUrl: 'stories/about-us',
   metaInfo: {
     title: 'Annu Advent',
     description:
@@ -30,10 +29,10 @@ export const appConfig: AppConfig = {
     type: 'article',
     'article:published_time': '2023-01-01T17:53:35.868Z',
     'article:author': 'Annu Advent',
-    'article:section': 'business',
+    'article:section': 'technology',
     'article:tag':
       'Annu Advent, Visual storytelling, Video content creators, Vlogs, Tutorials, Short films, Informative articles, Social media influencers, Entertaining stories, In-depth interviews, Graphic designers, Artists, Digital artwork, Infographics, Evolving digital landscape',
-    image: '/assets/annu-advent-logo.png',
+    image: '/assets/annu-advent-page.jpeg',
     url: '',
     card: 'summary_large_image',
     site_name: 'Annu Advent',

@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Article } from '@annuadvent/ngx-cms/article';
 import { Filter, FilterTypes } from '@annuadvent/ngx-common-ui/filters';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { FIREBASE_AUTH_ROLES, FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
 import { PageArticles } from '@annuadvent/ngx-tools/fire-cms';
 import { Subscription, filter } from 'rxjs';
 import { MY_ARTICLES_FILTERS, MY_ARTICLES_FILTERS_FOR_ADMIN } from '../../constants/stories.constants';
-import { DashboardConfig } from '../../../../interfaces/dashboard-config.interface';
-import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { ARROWS } from '../../../app-core/constants/app-icons.constants';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
 
 @Component({
   selector: 'app-manage-stories-page',
@@ -17,6 +17,7 @@ import { ARROWS } from '../../../app-core/constants/app-icons.constants';
   styleUrls: ['./manage-stories-page.component.scss']
 })
 export class ManageStoriesPageComponent {
+  pageMeta: MetaInfo = null;
   articles: Array<Article> = [];
   filteredArticles: Array<Article> = [];
   foundArticles: Array<Article> = [];
@@ -32,9 +33,8 @@ export class ManageStoriesPageComponent {
   constructor(
     public route: ActivatedRoute,
     private router: Router,
-    private metaService: MetaService,
+    private dashboardMetaService: DashboardMetaService,
     private fireAuthService: FireAuthService,
-    private appConfigService: AppConfigService,
   ) {
 
     this.routeStartEvent = this.router.events.pipe(filter(ev => ev instanceof NavigationStart)).subscribe(() => {
@@ -60,10 +60,7 @@ export class ManageStoriesPageComponent {
   }
 
   ngOnInit(): void {
-    this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig;
-    const dashboardMyArticlesMetaInfo = (this.appConfigService.getConfigById('dashboardConfig') as DashboardConfig)?.dashboardMetaInfo;
-
-    this.metaService.setPageMeta({ ...dashboardMyArticlesMetaInfo, title: `${dashboardMyArticlesMetaInfo?.title}` });
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.storiesHomePage);
   }
 
   ngOnDestroy(): void {

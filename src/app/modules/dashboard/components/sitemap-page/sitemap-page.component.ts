@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
   Sitemap,
   SitemapService,
@@ -9,13 +9,17 @@ import {
 import { SpinnerMode } from '@annuadvent/ngx-common-ui/spinner';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { AppSitemapService } from '../../services/app-sitemap.service';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
 
 @Component({
   selector: 'app-sitemap',
   templateUrl: './sitemap-page.component.html',
   styleUrls: ['./sitemap-page.component.scss']
 })
-export class SitemapPageComponent {
+export class SitemapPageComponent implements OnInit {
+  pageMeta: MetaInfo = null;
   sitemapInfo: SitemapInfo = null;
   sitemap: Sitemap = null;
   newSitemap: Sitemap = null;
@@ -29,8 +33,14 @@ export class SitemapPageComponent {
   constructor(
     private appSitemapSvc: AppSitemapService,
     private sitemapSvc: SitemapService,
-    private utilsSvc: UtilsService) {
+    private utilsSvc: UtilsService,
+    private dashboardMetaService: DashboardMetaService,
+  ) {
 
+  }
+
+  ngOnInit(): void {
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.sitemapPage);
   }
 
   public loadSitemap(): void {

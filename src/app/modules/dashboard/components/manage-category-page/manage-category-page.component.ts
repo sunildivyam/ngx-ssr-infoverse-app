@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Category } from '@annuadvent/ngx-cms/category';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo, MetaService } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { FIREBASE_AUTH_ROLES, FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
 import { FireCategoriesHttpService } from '@annuadvent/ngx-tools/fire-cms';
 import { FireStorageImageSpecs, FirebaseConfig } from '@annuadvent/ngx-tools/fire-common';
 import { Subscription } from 'rxjs';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
 
 @Component({
   selector: 'app-manage-category-page',
@@ -15,6 +17,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./manage-category-page.component.scss']
 })
 export class ManageCategoryPageComponent {
+  pageMeta: MetaInfo = null;
   readonly ADD_CATEGORY = 'add';
   category!: Category | null;
   categoryId: string = '';
@@ -33,10 +36,9 @@ export class ManageCategoryPageComponent {
   constructor(
     private fireCategoriesHttpService: FireCategoriesHttpService,
     private fireAuthService: FireAuthService,
-    private utilsService: UtilsService,
     private route: ActivatedRoute,
     private router: Router,
-    private metaService: MetaService,
+    private dashboardMetaService: DashboardMetaService,
     private appConfigService: AppConfigService,
   ) {
 
@@ -57,7 +59,7 @@ export class ManageCategoryPageComponent {
   }
 
   ngOnInit(): void {
-    // this.metaService.setPageMeta({ ...dashboardMyCategoryMetaInfo, title: `${appConfig.metaInfo.title} - ${dashboardMyCategoryMetaInfo.title}` });
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.categoryPage);
   }
 
   ngOnDestroy(): void {

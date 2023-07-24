@@ -4,7 +4,7 @@ import { Article } from '@annuadvent/ngx-cms/article';
 import { ArticleEditorService } from '@annuadvent/ngx-cms/article-editor';
 import { Category } from '@annuadvent/ngx-cms/category';
 import { EditorElement, EditorElementData, Html2JsonService } from '@annuadvent/ngx-cms/content-editor';
-import { MetaService } from '@annuadvent/ngx-common-ui/meta';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 import { AppConfig, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { FIREBASE_AUTH_ROLES, FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
@@ -12,6 +12,8 @@ import { FireArticlesHttpService, FireCategoriesHttpService } from '@annuadvent/
 import { FireStorageImageSpecs, FirebaseConfig } from '@annuadvent/ngx-tools/fire-common';
 import { OPENAI_ID_PHRASES, OpenaiPrompt, OpenaiPromptTypeEnum, OpenaiService } from '@annuadvent/ngx-tools/openai';
 import { Subscription } from 'rxjs';
+import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
+import { DashboardMetaService } from '../../services/dashboard-meta.service';
 
 @Component({
   selector: 'app-manage-story-page',
@@ -19,6 +21,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./manage-story-page.component.scss']
 })
 export class ManageStoryPageComponent {
+  pageMeta: MetaInfo = null;
   article: Article | null = null;
   articleId: string = '';
   categories: Array<Category> = [];
@@ -57,7 +60,7 @@ export class ManageStoryPageComponent {
     private route: ActivatedRoute,
     private router: Router,
     private utilsService: UtilsService,
-    private metaService: MetaService,
+    private dashboardMetaService: DashboardMetaService,
     private openaiService: OpenaiService,
     private html2jsonService: Html2JsonService,
     private articleEditorService: ArticleEditorService,
@@ -92,10 +95,7 @@ export class ManageStoryPageComponent {
   }
 
   ngOnInit(): void {
-    // this.metaService.setPageMeta({
-    //   ...dashboardMyArticleMetaInfo,
-    //   title: `${this.appConfig.metaInfo.title} - ${dashboardMyArticleMetaInfo.title}`,
-    // });
+    this.pageMeta = this.dashboardMetaService.setDashboardPageMeta(DashboardMetaInfoEnum.storyPage);
   }
 
   ngOnDestroy(): void {
