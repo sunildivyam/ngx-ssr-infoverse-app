@@ -45,7 +45,7 @@
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "max-age=86400, s-max-age=86400"
+              "value": "no-cache, no-store, must-revalidate"
             }
           ]
         },
@@ -68,11 +68,11 @@
           ]
         },
         {
-          "source": "@(dashboard|login|logout|error)/**/**",
+          "source": "@(stories|genre|)**/**",
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "no-cache, no-store, must-revalidate"
+              "value": "max-age=86400, s-max-age=86400"
             }
           ]
         }
@@ -106,7 +106,7 @@
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "max-age=604800, s-max-age=604800"
+              "value": "no-cache, no-store, must-revalidate"
             }
           ]
         },
@@ -129,11 +129,11 @@
           ]
         },
         {
-          "source": "@(dashboard|login|logout|error)/**/**",
+          "source": "@(stories|genre|)**/**",
           "headers": [
             {
               "key": "Cache-Control",
-              "value": "no-cache, no-store, must-revalidate"
+              "value": "max-age=86400, s-max-age=86400"
             }
           ]
         }

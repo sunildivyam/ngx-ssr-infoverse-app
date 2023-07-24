@@ -18,7 +18,8 @@ exports.processSignUp = functions.auth.user().onCreate(async (user) => {
     if ((user.email && user.emailVerified) || user.phoneNumber) {
         const customClaims = {
             admin: user.email === 'sunil.divyam@gmail.com' ? true : false,
-            author: true
+            author: ['sunil.divyam@gmail.com', 'sunil.mgmt@gmail.com', 'yaddivyam1@gmail.com'].includes(user.email) ? true : false,
+            reader: true,
         };
 
         try {
