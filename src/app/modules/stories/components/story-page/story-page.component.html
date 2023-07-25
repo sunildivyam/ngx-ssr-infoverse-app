@@ -1,0 +1,46 @@
+<anu-article-view class="container" *ngIf="article" [value]="article" [showMetaInfo]="true" [showAside]="true">
+    <!-- Faetured Articles -->
+    <div class="flex-container primary-lightest-grad spacing-around-vertical border-round">
+        <h3>Featured Stories</h3>
+    </div>
+    <div class="flex-container spacing-around-vertical">
+        <ul class="row aside-list">
+            <li class="col-12 spacing-around-vertical-half" *ngFor="let art of featuredArticles">
+                <a [routerLink]="['../', art?.id]">
+                    <span>
+                        <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
+                        {{art?.metaInfo?.title}}</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- PrimeShowAside Articles -->
+    <div class="flex-container primary-lightest-grad spacing-around-vertical border-round">
+        <h3>Latest Stories</h3>
+    </div>
+    <div class="flex-container spacing-around-vertical">
+        <ul class="row aside-list">
+            <li class="col-12 spacing-around-vertical-half" *ngFor="let art of primeShowAsideArticles">
+                <a [routerLink]="['../', art?.id]">
+                    <span>
+                        <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
+                        {{art?.metaInfo?.title}}</span></a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- All Category Articles -->
+    <div class="flex-container primary-lightest-grad spacing-around-vertical border-round">
+        <h3>Explore Related Stories</h3>
+    </div>
+    <div class="flex-container spacing-around-vertical">
+        <ul class="row aside-list">
+            <li class="col-12 spacing-around-vertical-half" *ngFor="let art of allCategoriesArticles">
+                <a [routerLink]="['../', art?.id]">
+                    <span>
+                        <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
+                        {{art?.metaInfo?.title}}</span></a>
+            </li>
+        </ul>
+    </div>
+</anu-article-view>

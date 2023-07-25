@@ -1,5 +1,4 @@
 import { appConfig } from "../app/constants/app.config.production";
-import { dashboardConfig } from "../app/constants/dashboard.config.production";
 import { firebaseConfig } from "../app/constants/firebase.config.production";
 import { openaiConfig } from "../app/constants/openai.config.production";
 
@@ -11,7 +10,6 @@ const config = {
   ...appConfig,
   firebase: firebaseConfig,
   openai: openaiConfig,
-  dashboard: dashboardConfig,
 }
 
 export const environment = {

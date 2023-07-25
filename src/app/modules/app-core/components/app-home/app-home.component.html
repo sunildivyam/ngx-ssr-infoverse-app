@@ -1,0 +1,109 @@
+<!-- Prime show articles slideshow -->
+<div *ngIf="primeShowArticles && primeShowArticles.length" class="flex-container">
+    <div class="row">
+        <anu-articles-slideshow class="container prime-show-articles" [articles]="primeShowArticles"
+            [isRowlayout]="true" [articleHref]="'./stories/'" [size]="'sm'"></anu-articles-slideshow>
+    </div>
+</div>
+
+<!-- Featured Categories -->
+<div class="flex-container primary-darkest-grad spacing-around-vertical">
+    <div class="row">
+        <anu-card *ngFor="let cat of featuredCategories"
+            class="featured-category-card stretch shadow border-round spacing-around-vertical primary-deep-dark-grad col-lg-3 col-md-6 col-sm-6">
+            <anu-card-image class="center">
+                <div class="primary-normal-grad shadow">
+                    <a [routerLink]="['./genre/', cat?.id]">
+                        <img *ngIf="cat?.image?.src" [src]="cat?.image?.src" [alt]="cat?.image?.alt" />
+                    </a>
+                </div>
+            </anu-card-image>
+            <anu-card-title class="center text-center">
+                <h2><a class="accent-deep-light" [routerLink]="['./genre/', cat?.id]">{{cat?.shortTitle}}</a></h2>
+            </anu-card-title>
+        </anu-card>
+    </div>
+</div>
+
+<!-- App Description -->
+<div class="flex-container spacing-around-vertical">
+    <h1>{{pageMeta?.title}}</h1>
+    <p>
+        {{pageMeta?.description}}
+    </p>
+    <div class="row">
+        <a class="spacing-around spacing" [routerLink]="['./stories']">Explore Stories {{ARROWS.RIGHT}}</a>
+        <a class="spacing-around spacing" [routerLink]="['./genre']">Explore Genres {{ARROWS.RIGHT}}</a>
+    </div>
+</div>
+
+<!-- Featured Articles -->
+<div class="flex-container primary-lightest-grad spacing-vertical">
+    <div class="row">
+        <div class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
+            *ngFor="let art of featuredArticles" [style.background]="'url(' + art?.image?.src + ')'">
+            <a [routerLink]="['./stories/', art?.id]">
+                <h2 class="spacing spacing-around-vertical accent-deep-light">{{art?.metaInfo?.title}}</h2>
+            </a>
+            <!-- <p class="spacing spacing-around-vertical">{{art?.metaInfo?.description}}</p> -->
+        </div>
+    </div>
+</div>
+
+<!-- mainShowArticles -->
+<div class="flex-container primary-deep-light-grad spacing-vertical">
+    <div class="row">
+        <ul class="col-sm-12 col-md-6 col-lg-6 left">
+            <li class="container spacing-around-vertical-half" *ngFor="let art of mainShowArticles">
+                <a [routerLink]="['./stories/', art?.id]">
+                    <strong>
+                        <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
+                        {{art?.metaInfo?.title}}</strong></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<!-- PageCategoryGroups -->
+<ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
+    <div class="flex-container spacing spacing-around-vertical secondary-light-grad">
+        <h2><a [routerLink]="['./genre/', pageCatGroup?.category?.id]">{{pageCatGroup?.category?.metaInfo?.title}}</a>
+        </h2>
+    </div>
+    <div class="flex-container spacing-around-vertical">
+        <div class="row">
+            <div *ngFor="let art of pageCatGroup?.pageArticles?.articles" class="col-sm-12 col-md-6 col-lg-4">
+                <anu-article class="shadow spacing-around-vertical" [value]="art" [showMetaInfo]="false"
+                    [isRowLayout]="false" [descriptionCharCount]="200" [readMoreHref]="['./stories/', art.id || '']"
+                    [readMoreLabel]="art.metaInfo?.title + '- Read Full Story ' + ARROWS.RIGHT"
+                    [titleHref]="['./stories/', art.id || '']"></anu-article>
+            </div>
+        </div>
+        <div class="row">
+            <label class="col-12 right"><strong><a
+                        [routerLink]="['./genre/', pageCatGroup?.category?.id]"><strong>Explore more
+                            stories {{ARROWS.RIGHT}}</strong></a></strong></label>
+        </div>
+    </div>
+</ng-container>
+
+<!-- Categories -->
+<div class="flex-container primary-lightest-grad spacing-vertical">
+    <div class="row">
+        <div class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
+            *ngFor="let cat of allCategories" [style.background]="'url(' + cat?.image?.src + ')'">
+            <a [routerLink]="['./genre/', cat?.id]">
+                <h2 class="spacing spacing-around-vertical accent-deep-light">{{cat?.metaInfo?.title}}</h2>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<!-- Prime show articles slideshow -->
+<div *ngIf="footerShowArticles && footerShowArticles.length" class="flex-container spacing-around-vertical">
+    <div class="row">
+        <anu-articles-slideshow class="container footer-show-articles" [articles]="footerShowArticles"
+            [isRowlayout]="false" [articleHref]="'./stories/'" [size]="'sm'"></anu-articles-slideshow>
+    </div>
+</div>

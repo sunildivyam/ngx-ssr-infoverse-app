@@ -6,6 +6,7 @@ import { AppSpinnerService } from '../../modules/app-core/services/app-spinner.s
 import { AppStateService } from '../../modules/app-core/services/app-state.service';
 import { AppState } from '../../modules/app-core/interfaces/app-state.interface';
 import { AppConfigService, AppConfig } from '@annuadvent/ngx-core/app-config';
+import { Category, CategoryFeatures } from '@annuadvent/ngx-cms/category';
 
 @Component({
   selector: 'app-root',
@@ -29,12 +30,20 @@ export class AppComponent implements OnInit {
     this.appConfig = this.appConfigService.config;
 
     this.appStateService.appState.subscribe((appState: AppState) => {
-      this.mainMenuItems = appState.mainNavItems as Array<MenuItem>;
-      this.footerNavItems = appState.mainNavItems as Array<MenuItem>;
+      this.mainMenuItems = this.toNavItems(
+        (appState?.allLiveCategories as Array<Category>)
+          .filter(cat => cat.features?.includes(CategoryFeatures.primaryNavigation)));
+      this.footerNavItems = this.toNavItems(
+        (appState?.allLiveCategories as Array<Category>)
+          .filter(cat => cat.features?.includes(CategoryFeatures.footerNavigation)));
     });
   }
 
-  async ngOnInit(): Promise<void> {
+  private toNavItems(categories: Array<Category>): Array<MenuItem> {
+    return categories.map(cat => ({ title: cat?.metaInfo?.title, href: ['genre', cat.id] } as MenuItem));
+  }
+
+  public ngOnInit(): void {
     this.themeService.setTheme(this.appConfig.themeName, true);
   }
 

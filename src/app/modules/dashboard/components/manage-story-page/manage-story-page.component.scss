@@ -1,0 +1,9 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    .form-body {
+        min-height: 5rem;
+    }
+}

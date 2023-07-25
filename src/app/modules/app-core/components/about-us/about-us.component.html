@@ -1,0 +1,46 @@
+<div class="flex-container primary-light-grad spacing-around-vertical">
+    <h1>{{pageMeta?.title}}</h1>
+</div>
+
+<div class="flex-container spacing-around-vertical">
+    <p [innerHTML]="pageMeta?.description"></p>
+</div>
+
+<div class="flex-container spacing-around-vertical">
+    <p [innerHTML]="appDescription"></p>
+</div>
+
+<div class="flex-container primary-light-grad spacing-around-vertical">
+    <h2>Explore our Angular components libraries</h2>
+</div>
+
+<div class="flex-container spacing-around-vertical">
+    <div class="row">
+        <div class="border col-sm-12 col-md-6 col-lg-3" *ngFor="let libInfo of libsInfoArr">
+            <anu-card class="spacing-half">
+                <anu-card-image>
+                    <img [src]="'assets/' + libInfo?.name + '.jpeg'" [alt]="libInfo?.name" />
+                </anu-card-image>
+                <anu-card-title class="spacing-half center">
+                    <h2><a [routerLink]="['../', 'libs', libInfo?.name]">{{libInfo?.name}}</a></h2>
+                </anu-card-title>
+                <anu-card-body>
+                    <span>{{libInfo?.fullName}}</span>
+                    <span>Version: {{libInfo?.version}}</span>
+                    <label>
+                        Github:
+                        <a target="_blank" [href]="libInfo?.homepage">Home</a> |
+                        <a target="_blank" [href]="libInfo?.bugs">
+                            Issues</a> |
+                        <a target="_blank" [href]="libInfo?.git">
+                            Repo</a>
+                    </label>
+                </anu-card-body>
+                <anu-card-footer class="center">
+                    <span class="center">For full documentation of {{libInfo?.name}} angular library, click
+                        <a [routerLink]="['../', 'libs', libInfo?.name]">{{libInfo?.name}}</a>.</span>
+                </anu-card-footer>
+            </anu-card>
+        </div>
+    </div>
+</div>
