@@ -6,6 +6,7 @@ import {
     TermsAndConditionsComponent,
     AppHomeComponent,
     AppHomePageResolver,
+    LoginComponent,
 } from '../modules/app-core';
 import { IsLoggedInGuard } from '@annuadvent/ngx-tools/fire-auth';
 
@@ -15,6 +16,10 @@ export const routes: Routes = [
         component: AppHomeComponent,
         runGuardsAndResolvers: 'always',
         resolve: { 'appHome': AppHomePageResolver },
+    },
+    {
+        path: 'login',
+        component: LoginComponent,
     },
     {
         path: 'about-us',
