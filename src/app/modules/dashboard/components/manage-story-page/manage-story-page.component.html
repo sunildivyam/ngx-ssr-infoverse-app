@@ -48,6 +48,6 @@
 
 <!-- Modal Confirmation box -->
 <anu-modal [enableCancel]="true" [enableClose]="true" [enableOk]="true" [opened]="showModal"
-    [title]="'Delete Confirmation'" (cancelClick)="deleteCancelled()" (okClick)="deleteConfirmed()">
+    [modalTitle]="'Delete Confirmation'" (cancelClick)="deleteCancelled()" (okClick)="deleteConfirmed()">
     <p>Article will be deleted permanently and you will not be able to recover. Are you sure to continue?</p>
 </anu-modal>

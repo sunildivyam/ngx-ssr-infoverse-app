@@ -254,7 +254,6 @@ export class ManageStoryPageComponent {
   }
 
   public articleChanged(article: Article): void {
-    article.metaInfo.site_name = this.appConfig.metaInfo.title;
     article.metaInfo['article:author'] =
       article.metaInfo['article:author'] ||
       this.appConfig.metaInfo['article:author'];
