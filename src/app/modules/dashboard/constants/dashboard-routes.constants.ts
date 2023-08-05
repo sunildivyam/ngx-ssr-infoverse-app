@@ -8,11 +8,14 @@ import { ManageStoriesPageComponent } from '../components/manage-stories-page/ma
 import { ManageCategoriesResolver } from '../resolvers/manage-categories.resolver';
 import { ManageStoriesResolver } from '../resolvers/manage-stories.resolver';
 import { SitemapPageComponent } from '../components/sitemap-page/sitemap-page.component';
+import { OpenaiPageComponent } from '../components/openai-page/openai-page.component';
 
 export const routes: Routes = [
     {
         path: '',
         component: DashboardHomeComponent,
+        runGuardsAndResolvers: 'always',
+        canActivate: [IsLoggedInGuard],
     },
     {
         path: 'manage-categories',
@@ -46,7 +49,7 @@ export const routes: Routes = [
     },
     {
         path: 'openai',
-        component: ManageCategoryPageComponent,
+        component: OpenaiPageComponent,
         runGuardsAndResolvers: 'always',
         canActivate: [RoleAdminGuard]
     },

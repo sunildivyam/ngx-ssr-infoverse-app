@@ -52,6 +52,15 @@ export class SitemapPageComponent implements OnInit {
     });
   }
 
+  public createSitemap(): void {
+    this.loading = true;
+    this.sitemapSvc.getSitemapResponse(true).then((sitemapRes: SitemapResponse) => {
+      this.sitemapInfo = sitemapRes.sitemapInfo;
+      this.sitemap = sitemapRes.sitemap;
+      this.loading = false;
+    });
+  }
+
   public checkNewUrls(): void {
     this.loading = true;
     Promise.all([

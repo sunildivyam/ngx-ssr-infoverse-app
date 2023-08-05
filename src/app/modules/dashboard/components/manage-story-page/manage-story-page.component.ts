@@ -10,7 +10,7 @@ import { UtilsService } from '@annuadvent/ngx-core/utils';
 import { FIREBASE_AUTH_ROLES, FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
 import { FireArticlesHttpService, FireCategoriesHttpService } from '@annuadvent/ngx-tools/fire-cms';
 import { FireStorageImageSpecs, FirebaseConfig } from '@annuadvent/ngx-tools/fire-common';
-import { OPENAI_ID_PHRASES, OpenaiPrompt, OpenaiPromptTypeEnum, OpenaiService } from '@annuadvent/ngx-tools/openai';
+import { OpenaiConfigService, OpenaiPrompt, OpenaiPromptTypeEnum, OpenaiService } from '@annuadvent/ngx-tools/openai';
 import { Subscription } from 'rxjs';
 import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
 import { DashboardMetaService } from '../../services/dashboard-meta.service';
@@ -69,6 +69,7 @@ export class ManageStoryPageComponent {
 
     this.appConfig = this.appConfigService.config;
 
+
     const imageSpecs = (this.appConfigService.firebase as FirebaseConfig).storage.imageDimensions;
     this.imageHelpText = this.getImageSpecsString(imageSpecs);
 
@@ -84,7 +85,10 @@ export class ManageStoryPageComponent {
       );
       this.getCategories();
       this.getArticle(this.articleId);
+
+      this.isAdmin && this.openaiService.initOpenai(this.appConfigService.openai);
     });
+
   }
 
 
@@ -421,7 +425,6 @@ export class ManageStoryPageComponent {
 
     const article = await this.articleEditorService.generateArticleFromOpenai(
       articleTitle,
-      this.appConfig,
       '',
       '',
       ''
@@ -451,7 +454,6 @@ export class ManageStoryPageComponent {
     setTimeout(() => {
       const body = this.articleEditorService.cleanAndFormatEditorEl(
         this.article.body,
-        [...OPENAI_ID_PHRASES, 'As an AI language model']
       );
 
       this.article = { ...this.article, body };

@@ -9,7 +9,8 @@
     <div class="container relative">
         <anu-sitemap [sitemap]="sitemap" [sitemapInfo]="sitemapInfo" [newUrls]="newUrls" [newSitemap]="newSitemap"
             (loadSitemapClicked)="loadSitemap()" (previewClicked)="previewSitemap()"
-            (checkNewUrlsClicked)="checkNewUrls()" (saveClicked)="saveSitemap($event)"></anu-sitemap>
+            [createSitemapClicked]="createSitemap()" (checkNewUrlsClicked)="checkNewUrls()"
+            (saveClicked)="saveSitemap($event)"></anu-sitemap>
 
         <anu-spinner [fullscreen]="false" [mode]="spinnerMode" [show]="loading" [size]="'md'" [speed]="'normal'"
             [static]="false" [theme]="'primary'">
