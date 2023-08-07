@@ -8,6 +8,7 @@ import { ArticleModule } from '@annuadvent/ngx-cms/article';
 import { CategoryModule } from '@annuadvent/ngx-cms/category';
 import { CategoryArticlesListModule } from '@annuadvent/ngx-cms/category-articles-list';
 import { CardModule } from '@annuadvent/ngx-common-ui/card';
+import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { CardModule } from '@annuadvent/ngx-common-ui/card';
     ArticleModule,
     CategoryArticlesListModule,
     CardModule,
+    SocialMediaModule,
   ],
   exports: [
     CategoriesHomePageComponent,

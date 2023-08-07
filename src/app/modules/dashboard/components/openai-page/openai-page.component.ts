@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
-import { AppConfig, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { Subscription, filter } from 'rxjs';
 import { DashboardMetaInfoEnum } from '../../enums/dashboard-meta.enums';
 import { DashboardMetaService } from '../../services/dashboard-meta.service';
@@ -17,15 +16,12 @@ export class OpenaiPageComponent {
   error: any;
   routeStartEvent: Subscription;
   routeEndEvent: Subscription;
-  appConfig: AppConfig = null;
 
   constructor(
     public route: ActivatedRoute,
     private router: Router,
     private dashboardMetaService: DashboardMetaService,
-    private appConfigService: AppConfigService,
   ) {
-    this.appConfig = this.appConfigService.config;
 
     this.routeStartEvent = this.router.events
       .pipe(filter((ev) => ev instanceof NavigationStart))

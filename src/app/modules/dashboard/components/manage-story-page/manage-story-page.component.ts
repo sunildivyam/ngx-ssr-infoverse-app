@@ -120,8 +120,8 @@ export class ManageStoryPageComponent {
       const getArticlePromise: Promise<Article> = this.isAdmin
         ? this.fireArticlesHttpService.getArticle(id)
         : this.fireArticlesHttpService.getUsersArticle(
+          id,
           this.fireAuthService.getCurrentUserId(),
-          id
         );
 
       getArticlePromise
@@ -435,6 +435,7 @@ export class ManageStoryPageComponent {
     clearInterval(this.autoGenerateTimer);
     this.autoGenerateLoading = false;
     this.saveClicked(this.article);
+    this.showOpenAiAutogenerate = false;
     return article;
   }
 
@@ -453,7 +454,7 @@ export class ManageStoryPageComponent {
     this.loading = true;
     setTimeout(() => {
       const body = this.articleEditorService.cleanAndFormatEditorEl(
-        this.article.body,
+        this.article?.body,
       );
 
       this.article = { ...this.article, body };

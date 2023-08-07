@@ -32,11 +32,11 @@
 
 <div class="flex-container spacing-around-vertical" *ngIf="!route.firstChild">
     <div class="left col-12">
-        <anu-search-box class="col-12" [items]="categories" [keys]="searchKeys" (changed)="onSearch($event)">
+        <anu-search-box class="container" [items]="categories" [keys]="searchKeys" (changed)="onSearch($event)">
         </anu-search-box>
 
         <!-- Filters Start-->
-        <anu-collapsible class="border spacing" [collapsed]="false" [isDropdownStyle]="true"
+        <anu-collapsible class="border spacing container" [collapsed]="false" [isDropdownStyle]="true"
             [hamBurgerClassNames]="['size-sm']">
             <anu-collapsible-header>FILTERS</anu-collapsible-header>
             <anu-collapsible-content>

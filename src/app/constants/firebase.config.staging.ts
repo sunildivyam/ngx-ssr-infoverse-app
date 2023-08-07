@@ -44,19 +44,19 @@ const ui = {
     {
       provider: FIREBASE_AUTH_SIGNIN_METHODS.GOOGLE,
     },
-    // Sign in with Facebook
-    {
-      provider: FIREBASE_AUTH_SIGNIN_METHODS.FACEBOOK,
-    },
+    // // Sign in with Facebook
+    // {
+    //   provider: FIREBASE_AUTH_SIGNIN_METHODS.FACEBOOK,
+    // },
 
-    // Sign in with Twitter
-    {
-      provider: FIREBASE_AUTH_SIGNIN_METHODS.TWITTER,
-    },
-    // Sign in with Github
-    {
-      provider: FIREBASE_AUTH_SIGNIN_METHODS.GITHUB,
-    },
+    // // Sign in with Twitter
+    // {
+    //   provider: FIREBASE_AUTH_SIGNIN_METHODS.TWITTER,
+    // },
+    // // Sign in with Github
+    // {
+    //   provider: FIREBASE_AUTH_SIGNIN_METHODS.GITHUB,
+    // },
   ],
 };
 

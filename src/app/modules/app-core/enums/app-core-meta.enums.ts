@@ -3,4 +3,5 @@ export enum CoreMetaInfoEnum {
     privacy = 'privacy',
     aboutUs = 'aboutUs',
     contactUs = 'contactUs',
+    login = 'login',
 };

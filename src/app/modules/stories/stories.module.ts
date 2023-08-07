@@ -9,6 +9,7 @@ import { CardModule } from '@annuadvent/ngx-common-ui/card';
 import { ArticleModule } from '@annuadvent/ngx-cms/article';
 import { SlideshowModule } from '@annuadvent/ngx-common-ui/slideshow';
 import { ArticleViewModule } from '@annuadvent/ngx-cms/article-view';
+import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { ArticleViewModule } from '@annuadvent/ngx-cms/article-view';
     ArticleModule,
     SlideshowModule,
     ArticleViewModule,
+    SocialMediaModule,
   ],
   exports: [
     StoriesHomePageComponent,

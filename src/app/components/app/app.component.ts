@@ -7,6 +7,7 @@ import { AppStateService } from '../../modules/app-core/services/app-state.servi
 import { AppState } from '../../modules/app-core/interfaces/app-state.interface';
 import { AppConfigService, AppConfig } from '@annuadvent/ngx-core/app-config';
 import { Category, CategoryFeatures } from '@annuadvent/ngx-cms/category';
+import { SOCIAL_MEDIA_BUTTONS, SocialMediaButton } from '@annuadvent/ngx-common-ui/social-media';
 
 @Component({
   selector: 'app-root',
@@ -20,6 +21,7 @@ export class AppComponent implements OnInit {
   isMainNavOpen: boolean = false;
   SpinnerMode = SpinnerMode;
   themeFontSizes: Array<string> = ['12px', '16px', '20px'];
+  socialMediaButtons: Array<SocialMediaButton> = [];
 
   constructor(
     private themeService: ThemeService,
@@ -37,6 +39,9 @@ export class AppComponent implements OnInit {
         (appState?.allLiveCategories as Array<Category>)
           .filter(cat => cat.features?.includes(CategoryFeatures.footerNavigation)));
     });
+
+    // init social media
+    this.initSocialMedia();
   }
 
   private toNavItems(categories: Array<Category>): Array<MenuItem> {
@@ -53,5 +58,16 @@ export class AppComponent implements OnInit {
 
   public mainMenuOpenStatusChanged(opened: boolean): void {
     this.isMainNavOpen = opened;
+  }
+
+  public initSocialMedia(): void {
+    const socialMeidaConfig = this.appConfigService.config.socialMedia || {};
+
+    this.socialMediaButtons = SOCIAL_MEDIA_BUTTONS.map(btn => {
+      return {
+        ...btn,
+        url: socialMeidaConfig[btn.id]
+      }
+    });
   }
 }

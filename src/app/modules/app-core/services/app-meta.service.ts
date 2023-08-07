@@ -66,4 +66,18 @@ export class AppMetaService {
 
     return this.setPageMeta(title, description, keywordsArr);
   }
+
+  public setLoginPageMeta(): MetaInfo {
+    let { title, description, keywords } = coreMetaInfo['login'];
+    const companyName = this.appConfigService.config.name;
+
+    title = title.replace('{{companyName}}', companyName);
+    description = description.replace('{{companyName}}', companyName);
+    const keywordsArr: Array<string> = [
+      ...keywords.split(', '),
+      companyName,
+    ];
+
+    return this.setPageMeta(title, description, keywordsArr);
+  }
 }
