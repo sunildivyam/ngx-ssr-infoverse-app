@@ -2,7 +2,6 @@ import { AppConfig } from "@annuadvent/ngx-core/app-config";
 import { appConfig } from "../app/constants/app.config.development";
 import { firebaseConfig } from "../app/constants/firebase.config.development";
 import { openaiConfig } from "../app/constants/openai.config.development";
-import { dashboardConfig } from "../app/constants/dashboard.config.development";
 
 firebaseConfig.app.apiKey = '';
 openaiConfig.apiKey = '';
@@ -12,7 +11,6 @@ const config: AppConfig = {
   ...appConfig,
   firebase: firebaseConfig,
   openai: openaiConfig,
-  dashboard: dashboardConfig,
 };
 
 export const environment = {
