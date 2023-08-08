@@ -15,6 +15,7 @@ import { FooterNavModule } from '@annuadvent/ngx-common-ui/footer-nav';
 import { ThemeFontResizerModule } from '@annuadvent/ngx-common-ui/theme-font-resizer';
 import { BreadcrumbModule } from '@annuadvent/ngx-common-ui/breadcrumb';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
     UtilsModule,
     AppConfigModule,
     BreadcrumbModule,
+    SocialMediaModule,
   ],
   providers: [
     {

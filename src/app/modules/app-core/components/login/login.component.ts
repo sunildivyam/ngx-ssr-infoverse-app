@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { AppConfig, AppConfigService } from '@annuadvent/ngx-core/app-config';
 import { FireAuthService } from '@annuadvent/ngx-tools/fire-auth';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
+import { AppMetaService } from '../../services/app-meta.service';
+import { MetaInfo } from '@annuadvent/ngx-common-ui/meta';
 
 
 @Component({
@@ -18,12 +20,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   authStateSubscription: Subscription;
   returnUrl: string = '';
   isLoggedIn: boolean = false;
+  pageMeta: MetaInfo = null;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private fireAuthService: FireAuthService,
     private appConfigService: AppConfigService,
+    private appMetaService: AppMetaService,
   ) {
     this.appConfig = this.appConfigService.config;
 
@@ -39,10 +43,17 @@ export class LoginComponent implements OnInit, OnDestroy {
           this.router.navigate([this.returnUrl || '/']);
         }
       });
+
+    this.router.events
+      .pipe(filter((ev) => ev instanceof NavigationEnd))
+      .subscribe(() => {
+        this.pageMeta = this.appMetaService.setLoginPageMeta();
+      });
   }
 
   ngOnInit(): void {
     this.isLoggedIn = this.fireAuthService.isLoggedIn();
+    this.pageMeta = this.appMetaService.setLoginPageMeta();
   }
 
   ngOnDestroy(): void {

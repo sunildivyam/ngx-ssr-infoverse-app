@@ -201,7 +201,6 @@ export class ManageCategoryPageComponent {
 
   public categoryChanged(category: Category): void {
     const appConfig = this.appConfigService.config;
-    category.metaInfo.site_name = appConfig.metaInfo.title;
     category.metaInfo['article:author'] = category.metaInfo['article:author'] || appConfig.metaInfo['article:author'];
     category.metaInfo.author = category.metaInfo.author || appConfig.metaInfo.author;
   }

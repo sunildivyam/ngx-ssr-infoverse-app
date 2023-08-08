@@ -26,7 +26,7 @@ export class AppSitemapService {
     sitemapItems = categories.map(cat => {
       return {
         loc: {
-          _text: `${this.apiBaseUrl}/${cat.id}`
+          _text: `${this.apiBaseUrl}/genre/${cat.id}`
         },
         lastmod: {
           _text: cat.updated
@@ -50,7 +50,7 @@ export class AppSitemapService {
       article.categories.forEach(catId => {
         sitemapItems.push({
           loc: {
-            _text: `${this.apiBaseUrl}/${catId}/${article.id}`
+            _text: `${this.apiBaseUrl}/stories/${article.id}`
           },
           lastmod: {
             _text: article.updated

@@ -2,7 +2,7 @@
     <div class="left container relative">
         <ng-container *ngIf="found">
             <anu-category-editor class="container" [value]="category" [enableDelete]="isAdmin && !isNewCategoryPage"
-                [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId"
+                [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId" [enableOpenai]="isAdmin"
                 [enableReadonlyIdToggle]="isAdmin" [imageHelpText]="imageHelpText" [readonlyId]="true"
                 [readonlyTitle]="!isNewCategoryPage" (isLiveClicked)="isLiveClicked($event)"
                 (inReviewClicked)="inReviewClicked($event)" (saveClicked)="saveClicked($event)"
@@ -18,6 +18,6 @@
 
 <!-- Modal Confirmation box -->
 <anu-modal [enableCancel]="true" [enableClose]="true" [enableOk]="true" [opened]="showModal"
-    [title]="'Delete Confirmation'" (cancelClick)="deleteCancelled()" (okClick)="deleteConfirmed()">
+    [modalTitle]="'Delete Confirmation'" (cancelClick)="deleteCancelled()" (okClick)="deleteConfirmed()">
     <p>Category will be deleted permanently and you will not be able to recover. Are you sure to continue?</p>
 </anu-modal>

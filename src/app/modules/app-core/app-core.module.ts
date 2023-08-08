@@ -18,6 +18,7 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { RouterModule } from '@angular/router';
 import { ArticleModule } from '@annuadvent/ngx-cms/article';
 import { ArticlesSlideshowModule } from '@annuadvent/ngx-cms/articles-slideshow';
+import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ArticlesSlideshowModule } from '@annuadvent/ngx-cms/articles-slideshow'
     FireCommonModule,
     ArticleModule,
     ArticlesSlideshowModule,
+    SocialMediaModule,
   ],
   exports: [
     LoginComponent,

@@ -29,6 +29,7 @@ export class SitemapPageComponent implements OnInit {
   errorMessage: string = '';
   errorCode: string = '';
   saveSuccess: boolean = false;
+  recreateSitemap: boolean = false;
 
   constructor(
     private appSitemapSvc: AppSitemapService,
@@ -45,11 +46,23 @@ export class SitemapPageComponent implements OnInit {
 
   public loadSitemap(): void {
     this.loading = true;
+    this.recreateSitemap = false;
+
     this.sitemapSvc.getSitemapResponse().then((sitemapRes: SitemapResponse) => {
       this.sitemapInfo = sitemapRes.sitemapInfo;
       this.sitemap = sitemapRes.sitemap;
       this.loading = false;
     });
+  }
+
+  public createSitemap(): void {
+    this.loading = true;
+    this.sitemapSvc.getSitemapResponse(true).then((sitemapRes: SitemapResponse) => {
+      this.sitemapInfo = sitemapRes.sitemapInfo;
+      this.sitemap = sitemapRes.sitemap;
+      this.loading = false;
+    });
+    this.recreateSitemap = true;
   }
 
   public checkNewUrls(): void {
@@ -83,7 +96,7 @@ export class SitemapPageComponent implements OnInit {
     this.loading = true;
 
     // Step 1) Loads the existing sitemap
-    this.sitemapSvc.getSitemapResponse().then((sitemapRes: SitemapResponse) => {
+    this.sitemapSvc.getSitemapResponse(this.recreateSitemap).then((sitemapRes: SitemapResponse) => {
       this.sitemapInfo = sitemapRes.sitemapInfo;
       this.sitemap = sitemapRes.sitemap;
 
