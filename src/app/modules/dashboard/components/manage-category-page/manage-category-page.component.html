@@ -2,9 +2,9 @@
     <div class="left container relative">
         <ng-container *ngIf="found">
             <anu-category-editor class="container" [value]="category" [enableDelete]="isAdmin && !isNewCategoryPage"
-                [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId" [enableOpenai]="isAdmin"
-                [enableReadonlyIdToggle]="isAdmin" [imageHelpText]="imageHelpText" [readonlyId]="true"
-                [readonlyTitle]="!isNewCategoryPage" (isLiveClicked)="isLiveClicked($event)"
+                [enablePublish]="isAdmin && !isNewCategoryPage" [enableUniqueId]="postfixUniqueId"
+                [enableOpenai]="isAdmin" [enableReadonlyIdToggle]="isAdmin" [imageHelpText]="imageHelpText"
+                [readonlyId]="true" [readonlyTitle]="!isNewCategoryPage" (isLiveClicked)="isLiveClicked($event)"
                 (inReviewClicked)="inReviewClicked($event)" (saveClicked)="saveClicked($event)"
                 (deleteClicked)="deleteClicked($event)" (changed)="categoryChanged($event)">
             </anu-category-editor>

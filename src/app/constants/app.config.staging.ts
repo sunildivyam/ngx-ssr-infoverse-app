@@ -1,7 +1,7 @@
 import { AppConfig } from '@annuadvent/ngx-core/app-config';
 
 export const appConfig: AppConfig = {
-  name: 'annuBusiness',
+  name: 'AnnuBusiness',
   copyrightText: 'copyright©annu-business. All rights reserved.',
   themeName: 'skyBlue',
   apiBaseUrl: 'https://annu-business.web.app',

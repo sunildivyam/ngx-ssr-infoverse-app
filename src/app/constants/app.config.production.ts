@@ -1,7 +1,7 @@
 import { AppConfig } from '@annuadvent/ngx-core/app-config';
 
 export const appConfig: AppConfig = {
-  name: 'annuadvent',
+  name: 'AnnuAdvent',
   copyrightText: 'copyright©annuadvent. All rights reserved.',
   themeName: 'skyBlue',
   apiBaseUrl: 'https://www.annuadvent.com', // When running prod on hosting server
