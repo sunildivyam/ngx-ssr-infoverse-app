@@ -1,34 +1,36 @@
 :host {
-    width: 100%;
+  width: 100%;
 
-    .category-home-page {
-        &_card {
-            transition: all 0.3s ease-in-out;
-            overflow: auto;
-            cursor: pointer;
+  .category-home-page {
+    &_card {
+      transition: all 0.3s ease-in-out;
+      overflow: auto;
+      cursor: pointer;
+      font-size: 80%;
 
-            anu-card-title h2 {
-                color: var(--anu-accent-deep-light);
-                line-height: 1.5;
-            }
+      anu-card-title h2 {
+        color: var(--anu-accent-deep-light);
+        line-height: 1.5;
+      }
 
-            &:hover {
-                background: var(--anu-secondary-lighter);
-            }
-        }
-
-        &_article-card {
-            transition: all 0.1s ease-in-out;
-            overflow: auto;
-
-            anu-card-title h2 {
-                color: var(--anu-accent-deep-light);
-                line-height: 1.5;
-            }
-
-            &:hover {
-                background: var(--anu-primary-deep-light);
-            }
-        }
+      &:hover {
+        background: var(--anu-secondary-lighter);
+        transform: scale(1.03);
+      }
     }
+
+    &_article-card {
+      transition: all 0.1s ease-in-out;
+      overflow: auto;
+
+      anu-card-title h2 {
+        color: var(--anu-accent-deep-light);
+        line-height: 1.5;
+      }
+
+      &:hover {
+        background: var(--anu-primary-deep-light);
+      }
+    }
+  }
 }
