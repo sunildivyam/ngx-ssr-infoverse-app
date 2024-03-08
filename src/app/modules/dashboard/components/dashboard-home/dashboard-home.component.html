@@ -11,7 +11,7 @@
     [showLogoutBtn]="true"
   ></anu-login-status>
 </div>
-<div class="flex-container spacing-around-vertical">
+<div class="flex-container spacing-around-v">
   <div class="row" *ngIf="!route.firstChild">
     <!--My Articles-->
     <anu-card
@@ -118,7 +118,7 @@
         <h2>Need Help? Below are the steps to get started.</h2>
       </anu-card-title>
       <anu-card-body>
-        <div class="flex-container spacing-around-vertical">
+        <div class="flex-container spacing-around-v">
           <div *ngIf="helpArticles" class="col-12">
             <div *ngFor="let art of helpArticles" class="category-articles">
               <anu-article

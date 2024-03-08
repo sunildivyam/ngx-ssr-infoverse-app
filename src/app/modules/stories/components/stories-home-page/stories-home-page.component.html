@@ -1,19 +1,19 @@
 <div
   *ngIf="!route.firstChild"
-  class="flex-container primary-lightest-grad spacing-vertical"
+  class="flex-container primary-lightest-grad spacing-v"
 >
   <div class="row">
     <div
-      class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
+      class="featured-articles relative spacing-around-v border-round col-sm-12 col-md-4 col-lg-3"
       *ngFor="let art of featuredArticles"
       [style.background]="'url(' + art?.image?.src + ')'"
     >
       <a [routerLink]="['./', art?.id]">
-        <h2 class="spacing spacing-around-vertical">
+        <h2 class="spacing spacing-around-v">
           {{ art?.metaInfo?.title }}
         </h2>
       </a>
-      <!-- <p class="spacing spacing-around-vertical">{{art?.metaInfo?.description}}</p> -->
+      <!-- <p class="spacing spacing-around-v">{{art?.metaInfo?.description}}</p> -->
     </div>
   </div>
 </div>
@@ -21,7 +21,7 @@
 <!-- No category or article found message -->
 <div
   *ngIf="!route.firstChild && notFoundArticleId"
-  class="flex-container primary-light-grad spacing-vertical"
+  class="flex-container primary-light-grad spacing-v"
 >
   <div class="row">
     <div class="col-12 center">
@@ -43,7 +43,7 @@
 <!-- Prime show articles slideshow -->
 <div
   *ngIf="primeShowArticles && primeShowArticles.length"
-  class="flex-container spacing-around-vertical"
+  class="flex-container spacing-around-v"
 >
   <div class="row">
     <anu-articles-slideshow
@@ -61,12 +61,12 @@
 <!-- mainShowArticles -->
 <div
   *ngIf="!route.firstChild"
-  class="flex-container primary-deep-light-grad spacing-vertical"
+  class="flex-container primary-deep-light-grad spacing-v"
 >
   <div class="row">
     <ul class="col-sm-12 col-md-6 col-lg-8 left">
       <li
-        class="container spacing-around-vertical-half"
+        class="container spacing-around-v-half"
         *ngFor="let art of mainShowArticles"
       >
         <a [routerLink]="['./', art?.id]">
@@ -91,23 +91,21 @@
 <!-- PageCategoryGroups -->
 <ng-container *ngIf="!route.firstChild">
   <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
-    <div
-      class="flex-container spacing spacing-around-vertical secondary-light-grad"
-    >
+    <div class="flex-container spacing spacing-around-v secondary-light-grad">
       <h2>
         <a [routerLink]="['../genre/', pageCatGroup?.category?.id]">{{
           pageCatGroup?.category?.metaInfo?.title
         }}</a>
       </h2>
     </div>
-    <div class="flex-container spacing-around-vertical">
+    <div class="flex-container spacing-around-v">
       <div class="row">
         <div
           *ngFor="let art of pageCatGroup?.pageArticles?.articles"
           class="col-sm-12 col-md-6 col-lg-4"
         >
           <anu-article
-            class="shadow spacing-around-vertical border-round"
+            class="shadow spacing-around-v border-round"
             [value]="art"
             [showMetaInfo]="false"
             [isRowLayout]="false"
@@ -136,14 +134,14 @@
 <!-- PrimeShowAside Articles -->
 <div
   *ngIf="!route.firstChild"
-  class="flex-container primary-lightest-grad spacing-around-vertical"
+  class="flex-container primary-lightest-grad spacing-around-v"
 >
   <h2>Latest Stories</h2>
 </div>
-<div *ngIf="!route.firstChild" class="flex-container spacing-around-vertical">
+<div *ngIf="!route.firstChild" class="flex-container spacing-around-v">
   <ul class="row">
     <li
-      class="col-sm-12 col-md-12 col-lg-6 spacing-around-vertical-half"
+      class="col-sm-12 col-md-12 col-lg-6 spacing-around-v-half"
       *ngFor="let art of primeShowAsideArticles"
     >
       <a [routerLink]="['./', art?.id]">
@@ -159,15 +157,15 @@
 </div>
 
 <!-- Categories -->
-<div class="flex-container primary-lightest-grad spacing-vertical">
+<div class="flex-container primary-lightest-grad spacing-v">
   <div class="row">
     <div
-      class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
+      class="featured-articles relative spacing-around-v border-round col-sm-12 col-md-4 col-lg-3"
       *ngFor="let cat of allCategories"
       [style.background]="'url(' + cat?.image?.src + ')'"
     >
       <a [routerLink]="['../genre/', cat?.id]">
-        <h2 class="spacing spacing-around-vertical">
+        <h2 class="spacing spacing-around-v">
           {{ cat?.metaInfo?.title }}
         </h2>
       </a>
@@ -178,7 +176,7 @@
 <!-- Footer show articles slideshow -->
 <div
   *ngIf="footerShowArticles && footerShowArticles.length"
-  class="flex-container spacing-around-vertical"
+  class="flex-container spacing-around-v"
 >
   <div class="row">
     <anu-articles-slideshow

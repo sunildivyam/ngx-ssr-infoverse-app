@@ -1,6 +1,6 @@
 <div
   *ngIf="!this.route.firstChild"
-  class="flex-container primary-light-grad spacing-vertical"
+  class="flex-container primary-light-grad spacing-v"
 >
   <h1>{{ pageMeta?.title }}</h1>
 </div>
@@ -8,7 +8,7 @@
 <!-- No category or article found message -->
 <div
   *ngIf="!route.firstChild && notFoundCategoryId"
-  class="flex-container primary-light-grad spacing-vertical"
+  class="flex-container primary-light-grad spacing-v"
 >
   <div class="row">
     <div class="col-12 center">
@@ -27,10 +27,7 @@
   </div>
 </div>
 
-<div
-  *ngIf="!this.route.firstChild"
-  class="flex-container spacing-around-vertical"
->
+<div *ngIf="!this.route.firstChild" class="flex-container spacing-around-v">
   <div class="row">
     <div
       class="col-sm-6 col-md-4 col-lg-3"
@@ -51,7 +48,7 @@
             />
           </a>
         </anu-card-image>
-        <anu-card-title class="spacing-horizontal center">
+        <anu-card-title class="spacing-h center">
           <h2>
             <a
               [routerLink]="[pageCatGroup?.category?.id]"
@@ -67,13 +64,13 @@
 </div>
 
 <!-- Page Description -->
-<div *ngIf="!this.route.firstChild" class="flex-container spacing-vertical">
+<div *ngIf="!this.route.firstChild" class="flex-container spacing-v">
   <p>{{ pageMeta?.description }}</p>
 </div>
 
 <div
   *ngIf="!this.route.firstChild"
-  class="flex-container primary-light-grad spacing-vertical"
+  class="flex-container primary-light-grad spacing-v"
 >
   <h2>Explore Latest Stories</h2>
 </div>
@@ -85,7 +82,7 @@
         <ng-container *ngFor="let article of allCategoriesArticles">
           <anu-article
             href="../"
-            class="category-home-page_article-card border border-round spacing-around-vertical"
+            class="category-home-page_article-card border border-round spacing-around-v"
             [value]="article || null"
             [showDescription]="true"
             [descriptionCharCount]="150"
@@ -103,14 +100,14 @@
           [categoryHref]="'./'"
           [articleHref]="'../stories/'"
           [readMoreLabel]="'Explore more stories ' + ARROWS.RIGHT"
-          class="spacing border border-round spacing-around-vertical"
+          class="spacing border border-round spacing-around-v"
           [category]="pageCatGroup?.category || null"
           [articles]="pageCatGroup?.pageArticles?.articles || []"
           [headerClassNames]="[
             'border',
             'border-round',
             'primary-lightest-grad-h',
-            'spacing-horizontal'
+            'spacing-h'
           ]"
           [listClassNames]="[]"
         ></anu-category-articles-list>

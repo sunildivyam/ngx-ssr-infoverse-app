@@ -9,7 +9,7 @@
   <!-- App Header -->
   <anu-menu
     (onResizeMenu)="onMainMenuResize($event)"
-    class="flex-container center primary-normal-grad accent-deep-light shadow"
+    class="flex-container center primary-deep-dark-grad accent-deep-light shadow"
     [items]="mainMenuItems"
     [logoWidth]="'60px'"
     [logoUrl]="'/assets/annu-advent-logo.png'"
@@ -18,18 +18,15 @@
     [subHeading]=""
     (openStatusChanged)="mainMenuOpenStatusChanged($event)"
     [opened]="isMainNavOpen"
+    [enableSeparator]="true"
     [headingHref]="['./']"
     [subHeadingHref]="['./']"
     [headingPrefixHref]="['./']"
     [menuClassNames]="[]"
-    [menuItemClassNames]="[
-      'primary-normal-bg',
-      'accent-deep-light',
-      'border-round',
-      'shadow'
-    ]"
+    [menuItemClassNames]="['accent-deep-light', 'border-round']"
   >
     <anu-login-status
+      class="col-sm-12 spacing-h-half"
       (profileClicked)="loginStatusClicked()"
       (signOutClicked)="loginStatusClicked()"
       (signInClicked)="loginStatusClicked()"
@@ -65,7 +62,7 @@
 
   <!-- App Footer -->
   <div class="flex-container primary-lightest-grad center">
-    <footer class="container spacing-vertical">
+    <footer class="container spacing-v">
       <anu-footer-nav
         class="primary-lightest-grad"
         [copyrightText]="appConfig.copyrightText"

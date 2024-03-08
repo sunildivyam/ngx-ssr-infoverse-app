@@ -8,11 +8,10 @@ import { appConfig } from "./app.config.development";
 import { FIREBASE_AUTH_SIGNIN_METHODS } from "@annuadvent/ngx-tools/fire-auth";
 
 const ui = {
-  signInFlow: "redirect", // redirect/popup
+  signInFlow: "popup", // redirect/popup
   siteName: appConfig.name,
   tosUrl: appConfig.tNcUrl, // Terms of service page url
   privacyPolicyUrl: appConfig.privacyPolicyUrl, // Privacy policy url
-  signInSuccessUrl: "https:localhost:4200/stories",
   // signInSuccessUrl: '/components/auth/login-status',  // User is redirected to this url after successful login.
 
   // Callback methods, on login events, like success, failure etc. and
