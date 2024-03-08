@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.annuadvent.annubusiness" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Annu Business</name>
+    <description>Annu Business App Description</description>
+    <author email="sunil.divyam@gmail.com" href="https://cordova.apache.org">
+        Annu Advent Team
+    </author>
+    <!-- Production Url for web app -->
+    <!-- <content src="https://annu-business.firebaseapp.com" /> -->
+    <content src="https://annuadvent.com" />
+
+    <!-- Local Url for web app -->
+    <!-- <content src="index.original.html" /> -->
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <universal-links>
+        <host name="infoverse.page.link" scheme="https" />
+        <host name="annu-business.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback"/>
+        </host>
+    </universal-links>
+    <preference name="AndroidLaunchMode" value="singleTask" />
+
+</widget>
