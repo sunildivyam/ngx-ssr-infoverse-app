@@ -3,9 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './components/app/app.component';
-import { ApiInterceptor, FireAuthModule, FirebaseInterceptor } from '@annuadvent/ngx-tools/fire-auth';
+import {
+  ApiInterceptor,
+  FireAuthModule,
+  FirebaseInterceptor,
+} from '@annuadvent/ngx-tools/fire-auth';
 import { AppCoreModule, AppStateService, appInit } from './modules/app-core';
-import { AppConfigModule, AppConfigService } from '@annuadvent/ngx-core/app-config';
+import {
+  AppConfigModule,
+  AppConfigService,
+} from '@annuadvent/ngx-core/app-config';
 import { UtilsModule } from '@annuadvent/ngx-core/utils';
 import { FireCommonService } from '@annuadvent/ngx-tools/fire-common';
 import { SpinnerModule } from '@annuadvent/ngx-common-ui/spinner';
@@ -18,9 +25,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
@@ -52,13 +57,9 @@ import { SocialMediaModule } from '@annuadvent/ngx-common-ui/social-media';
       provide: APP_INITIALIZER,
       useFactory: appInit,
       multi: true,
-      deps: [
-        AppStateService,
-        AppConfigService,
-        FireCommonService,
-      ],
-    }
+      deps: [AppStateService, AppConfigService, FireCommonService],
+    },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
