@@ -1,83 +1,135 @@
-<div *ngIf="!this.route.firstChild" class="flex-container primary-light-grad spacing-vertical">
-    <h1>{{pageMeta?.title}}</h1>
+<div
+  *ngIf="!this.route.firstChild"
+  class="flex-container primary-light-grad spacing-v"
+>
+  <h1>{{ pageMeta?.title }}</h1>
 </div>
 
 <!-- No category or article found message -->
-<div *ngIf="!route.firstChild && notFoundCategoryId" class="flex-container primary-light-grad spacing-vertical">
-    <div class="row">
-        <div class="col-12 center">
-            <span>Are you looking for <strong>{{notFoundCategoryId.split('-').join('
-                    ')}}</strong> related stories?</span>
-            <span>Explore related stories {{ARROWS.DOWN}}</span>
-        </div>
+<div
+  *ngIf="!route.firstChild && notFoundCategoryId"
+  class="flex-container primary-light-grad spacing-v"
+>
+  <div class="row">
+    <div class="col-12 center">
+      <span
+        >Are you looking for
+        <strong>{{
+          notFoundCategoryId.split("-").join(
+            "
+                    "
+          )
+        }}</strong>
+        related stories?</span
+      >
+      <span>Explore related stories {{ ARROWS.DOWN }}</span>
     </div>
+  </div>
 </div>
 
-<div *ngIf="!this.route.firstChild" class="flex-container spacing-around-vertical">
-    <div class="row">
-        <div class="col-sm-12 col-md-4 col-lg-3" *ngFor="let pageCatGroup of pageCategoryGroups">
-            <anu-card class="category-home-page_card spacing-around-half shadow border-round secondary-normal-grad">
-                <anu-card-image>
-                    <a [routerLink]="[pageCatGroup?.category?.id]" [title]="pageCatGroup?.category?.metaInfo?.title">
-                        <img class="container " [src]="pageCatGroup?.category?.image?.src"
-                            [alt]="pageCatGroup?.category?.image?.alt" />
-                    </a>
-                </anu-card-image>
-                <anu-card-title class="spacing-horizontal center">
-                    <h2><a [routerLink]="[pageCatGroup?.category?.id]"
-                            [title]="pageCatGroup?.category?.metaInfo?.title">{{pageCatGroup?.category?.metaInfo?.title}}</a>
-                    </h2>
-                </anu-card-title>
-                <anu-card-body>
-
-                </anu-card-body>
-            </anu-card>
-        </div>
+<div *ngIf="!this.route.firstChild" class="flex-container spacing-around-v">
+  <div class="row">
+    <div
+      class="col-sm-6 col-md-4 col-lg-3"
+      *ngFor="let pageCatGroup of pageCategoryGroups"
+    >
+      <anu-card
+        class="category-home-page_card spacing-around-half shadow border-round secondary-normal-grad"
+      >
+        <anu-card-image>
+          <a
+            [routerLink]="[pageCatGroup?.category?.id]"
+            [title]="pageCatGroup?.category?.metaInfo?.title"
+          >
+            <img
+              class="container"
+              [src]="pageCatGroup?.category?.image?.src"
+              [alt]="pageCatGroup?.category?.image?.alt"
+            />
+          </a>
+        </anu-card-image>
+        <anu-card-title class="spacing-h center">
+          <h2>
+            <a
+              [routerLink]="[pageCatGroup?.category?.id]"
+              [title]="pageCatGroup?.category?.metaInfo?.title"
+              >{{ pageCatGroup?.category?.metaInfo?.title }}</a
+            >
+          </h2>
+        </anu-card-title>
+        <anu-card-body> </anu-card-body>
+      </anu-card>
     </div>
+  </div>
 </div>
 
 <!-- Page Description -->
-<div *ngIf="!this.route.firstChild" class="flex-container spacing-vertical">
-    <p>{{pageMeta?.description}}</p>
+<div *ngIf="!this.route.firstChild" class="flex-container spacing-v">
+  <p>{{ pageMeta?.description }}</p>
 </div>
 
-<div *ngIf="!this.route.firstChild" class="flex-container primary-light-grad spacing-vertical">
-    <h2>Explore Latest Stories</h2>
+<div
+  *ngIf="!this.route.firstChild"
+  class="flex-container primary-light-grad spacing-v"
+>
+  <h2>Explore Latest Stories</h2>
 </div>
 
 <div class="flex-container" *ngIf="!this.route.firstChild">
-    <div class="row">
-        <div class="col-sm-12 col-md-8 col-lg-9">
-            <div>
-                <ng-container *ngFor="let article of allCategoriesArticles">
-                    <anu-article href="../"
-                        class="category-home-page_article-card border border-round spacing-around-vertical"
-                        [value]="article || null" [showDescription]="true" [descriptionCharCount]="150"
-                        [showMetaInfo]="false" [titleHref]="['../', 'stories', article?.id]"
-                        [readMoreHref]="['../', 'stories', article?.id]"
-                        [readMoreLabel]="'Full story ' + ARROWS.RIGHT"></anu-article>
-                </ng-container>
-            </div>
-        </div>
-        <div class="col-sm-12 col-md-4 col-lg-3">
-            <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
-                <anu-category-articles-list [categoryHref]="'./'" [articleHref]="'../stories/'"
-                    [readMoreLabel]="'Explore more stories ' + ARROWS.RIGHT"
-                    class="spacing border border-round spacing-around-vertical"
-                    [category]="pageCatGroup?.category || null" [articles]="pageCatGroup?.pageArticles?.articles || []"
-                    [headerClassNames]="['border', 'border-round', 'primary-lightest-grad-h', 'spacing-horizontal']"
-                    [listClassNames]="[]"></anu-category-articles-list>
-            </ng-container>
-        </div>
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-9">
+      <div>
+        <ng-container *ngFor="let article of allCategoriesArticles">
+          <anu-article
+            href="../"
+            class="category-home-page_article-card border border-round spacing-around-v"
+            [value]="article || null"
+            [showDescription]="true"
+            [descriptionCharCount]="150"
+            [showMetaInfo]="false"
+            [titleHref]="['../', 'stories', article?.id]"
+            [readMoreHref]="['../', 'stories', article?.id]"
+            [readMoreLabel]="'Full story ' + ARROWS.RIGHT"
+          ></anu-article>
+        </ng-container>
+      </div>
     </div>
+    <div class="col-sm-12 col-md-4 col-lg-3">
+      <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
+        <anu-category-articles-list
+          [categoryHref]="'./'"
+          [articleHref]="'../stories/'"
+          [readMoreLabel]="'Explore more stories ' + ARROWS.RIGHT"
+          class="spacing border border-round spacing-around-v"
+          [category]="pageCatGroup?.category || null"
+          [articles]="pageCatGroup?.pageArticles?.articles || []"
+          [headerClassNames]="[
+            'border',
+            'border-round',
+            'primary-lightest-grad-h',
+            'spacing-h'
+          ]"
+          [listClassNames]="[]"
+        ></anu-category-articles-list>
+      </ng-container>
+    </div>
+  </div>
 </div>
 
 <!-- Article view child routes -->
 <router-outlet></router-outlet>
 
-<div *ngIf="route.firstChild" class="flex-container spacing secondary-lighter-grad">
-    <h2><a [routerLink]="['./']">{{ARROWS.LEFT}} Explore Stories, Quizes and more</a>
-    </h2>
+<div
+  *ngIf="route.firstChild"
+  class="flex-container spacing secondary-lighter-grad"
+>
+  <h2>
+    <a [routerLink]="['./']"
+      >{{ ARROWS.LEFT }} Explore Stories, Quizes and more</a
+    >
+  </h2>
 </div>
 
-<anu-social-media-share-buttons [fullscreenMode]="true"></anu-social-media-share-buttons>
+<anu-social-media-share-buttons
+  [fullscreenMode]="true"
+></anu-social-media-share-buttons>

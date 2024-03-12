@@ -1,117 +1,194 @@
-<div *ngIf="!route.firstChild" class="flex-container primary-lightest-grad spacing-vertical">
-    <div class="row">
-        <div class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
-            *ngFor="let art of featuredArticles" [style.background]="'url(' + art?.image?.src + ')'">
-            <a [routerLink]="['./', art?.id]">
-                <h2 class="spacing spacing-around-vertical">{{art?.metaInfo?.title}}</h2>
-            </a>
-            <!-- <p class="spacing spacing-around-vertical">{{art?.metaInfo?.description}}</p> -->
-        </div>
+<div
+  *ngIf="!route.firstChild"
+  class="flex-container primary-lightest-grad spacing-v"
+>
+  <div class="row">
+    <div
+      class="featured-articles relative spacing-around-v border-round col-sm-12 col-md-4 col-lg-3"
+      *ngFor="let art of featuredArticles"
+      [style.background]="'url(' + art?.image?.src + ')'"
+    >
+      <a [routerLink]="['./', art?.id]">
+        <h2 class="spacing spacing-around-v">
+          {{ art?.metaInfo?.title }}
+        </h2>
+      </a>
+      <!-- <p class="spacing spacing-around-v">{{art?.metaInfo?.description}}</p> -->
     </div>
+  </div>
 </div>
 
 <!-- No category or article found message -->
-<div *ngIf="!route.firstChild && notFoundArticleId" class="flex-container primary-light-grad spacing-vertical">
-    <div class="row">
-        <div class="col-12 center">
-            <span>Are you looking for <strong>{{notFoundArticleId.split('-').join('
-                    ')}}</strong> related stories?</span>
-            <span>Explore related stories {{ARROWS.DOWN}}</span>
-        </div>
+<div
+  *ngIf="!route.firstChild && notFoundArticleId"
+  class="flex-container primary-light-grad spacing-v"
+>
+  <div class="row">
+    <div class="col-12 center">
+      <span
+        >Are you looking for
+        <strong>{{
+          notFoundArticleId.split("-").join(
+            "
+                    "
+          )
+        }}</strong>
+        related stories?</span
+      >
+      <span>Explore related stories {{ ARROWS.DOWN }}</span>
     </div>
+  </div>
 </div>
 
 <!-- Prime show articles slideshow -->
-<div *ngIf="primeShowArticles && primeShowArticles.length" class="flex-container spacing-around-vertical">
-    <div class="row">
-        <anu-articles-slideshow class="container" [articles]="primeShowArticles" [isRowlayout]="true"
-            [articleHref]="'./'" [size]="'sm'"></anu-articles-slideshow>
-    </div>
+<div
+  *ngIf="primeShowArticles && primeShowArticles.length"
+  class="flex-container spacing-around-v"
+>
+  <div class="row">
+    <anu-articles-slideshow
+      class="container"
+      [articles]="primeShowArticles"
+      [isRowlayout]="true"
+      [articleHref]="'./'"
+      [size]="'sm'"
+    ></anu-articles-slideshow>
+  </div>
 </div>
 
 <router-outlet></router-outlet>
 
 <!-- mainShowArticles -->
-<div *ngIf="!route.firstChild" class="flex-container primary-deep-light-grad spacing-vertical">
-    <div class="row">
-        <ul class="col-sm-12 col-md-6 col-lg-8 left">
-            <li class="container spacing-around-vertical-half" *ngFor="let art of mainShowArticles">
-                <a [routerLink]="['./', art?.id]">
-                    <strong>
-                        <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
-                        {{art?.metaInfo?.title}}</strong></a>
-            </li>
-        </ul>
-        <div class="col-sm-12 col-md-6 col-lg-4 center">
-            <h1>{{pageMeta?.title}}</h1>
-            <p>
-                {{pageMeta?.description}}
-            </p>
-        </div>
+<div
+  *ngIf="!route.firstChild"
+  class="flex-container primary-deep-light-grad spacing-v"
+>
+  <div class="row">
+    <ul class="col-sm-12 col-md-6 col-lg-8 left">
+      <li
+        class="container spacing-around-v-half"
+        *ngFor="let art of mainShowArticles"
+      >
+        <a [routerLink]="['./', art?.id]">
+          <strong>
+            <span class="bullet shadow border border-round">{{
+              ARROWS.RIGHT
+            }}</span>
+            {{ art?.metaInfo?.title }}</strong
+          ></a
+        >
+      </li>
+    </ul>
+    <div class="col-sm-12 col-md-6 col-lg-4 center">
+      <h1>{{ pageMeta?.title }}</h1>
+      <p>
+        {{ pageMeta?.description }}
+      </p>
     </div>
-
+  </div>
 </div>
 
 <!-- PageCategoryGroups -->
 <ng-container *ngIf="!route.firstChild">
-    <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
-        <div class="flex-container spacing spacing-around-vertical secondary-light-grad">
-            <h2><a
-                    [routerLink]="['../genre/', pageCatGroup?.category?.id]">{{pageCatGroup?.category?.metaInfo?.title}}</a>
-            </h2>
+  <ng-container *ngFor="let pageCatGroup of pageCategoryGroups">
+    <div class="flex-container spacing spacing-around-v secondary-light-grad">
+      <h2>
+        <a [routerLink]="['../genre/', pageCatGroup?.category?.id]">{{
+          pageCatGroup?.category?.metaInfo?.title
+        }}</a>
+      </h2>
+    </div>
+    <div class="flex-container spacing-around-v">
+      <div class="row">
+        <div
+          *ngFor="let art of pageCatGroup?.pageArticles?.articles"
+          class="col-sm-12 col-md-6 col-lg-4"
+        >
+          <anu-article
+            class="shadow spacing-around-v border-round"
+            [value]="art"
+            [showMetaInfo]="false"
+            [isRowLayout]="false"
+            [descriptionCharCount]="200"
+            [readMoreHref]="['./', art.id || '']"
+            [readMoreLabel]="
+              art.metaInfo?.title + '- Read Full Story ' + ARROWS.RIGHT
+            "
+            [titleHref]="['./', art.id || '']"
+          ></anu-article>
         </div>
-        <div class="flex-container spacing-around-vertical">
-            <div class="row">
-                <div *ngFor="let art of pageCatGroup?.pageArticles?.articles" class="col-sm-12 col-md-6 col-lg-4">
-                    <anu-article class="shadow spacing-around-vertical" [value]="art" [showMetaInfo]="false"
-                        [isRowLayout]="false" [descriptionCharCount]="200" [readMoreHref]="['./', art.id || '']"
-                        [readMoreLabel]="art.metaInfo?.title + '- Read Full Story ' + ARROWS.RIGHT"
-                        [titleHref]="['./', art.id || '']"></anu-article>
-                </div>
-            </div>
-            <div class="row">
-                <label class="col-12 right"><strong><a
-                            [routerLink]="['../genre/', pageCatGroup?.category?.id]"><strong>Explore more
-                                stories {{ARROWS.RIGHT}}</strong></a></strong></label>
-            </div>
-        </div>
-    </ng-container>
+      </div>
+      <div class="row">
+        <label class="col-12 right"
+          ><strong
+            ><a [routerLink]="['../genre/', pageCatGroup?.category?.id]"
+              ><strong>Explore more stories {{ ARROWS.RIGHT }}</strong></a
+            ></strong
+          ></label
+        >
+      </div>
+    </div>
+  </ng-container>
 </ng-container>
 
 <!-- PrimeShowAside Articles -->
-<div *ngIf="!route.firstChild" class="flex-container primary-lightest-grad spacing-around-vertical">
-    <h2>Latest Stories</h2>
+<div
+  *ngIf="!route.firstChild"
+  class="flex-container primary-lightest-grad spacing-around-v"
+>
+  <h2>Latest Stories</h2>
 </div>
-<div *ngIf="!route.firstChild" class="flex-container spacing-around-vertical">
-    <ul class="row">
-        <li class="col-sm-12 col-md-12 col-lg-6 spacing-around-vertical-half"
-            *ngFor="let art of primeShowAsideArticles">
-            <a [routerLink]="['./', art?.id]">
-                <strong>
-                    <span class="bullet shadow border border-round">{{ARROWS.RIGHT}}</span>
-                    {{art?.metaInfo?.title}}</strong></a>
-        </li>
-    </ul>
+<div *ngIf="!route.firstChild" class="flex-container spacing-around-v">
+  <ul class="row">
+    <li
+      class="col-sm-12 col-md-12 col-lg-6 spacing-around-v-half"
+      *ngFor="let art of primeShowAsideArticles"
+    >
+      <a [routerLink]="['./', art?.id]">
+        <strong>
+          <span class="bullet shadow border border-round">{{
+            ARROWS.RIGHT
+          }}</span>
+          {{ art?.metaInfo?.title }}</strong
+        ></a
+      >
+    </li>
+  </ul>
 </div>
 
 <!-- Categories -->
-<div class="flex-container primary-lightest-grad spacing-vertical">
-    <div class="row">
-        <div class="featured-articles relative spacing-around-vertical border-round col-sm-12 col-md-4 col-lg-3"
-            *ngFor="let cat of allCategories" [style.background]="'url(' + cat?.image?.src + ')'">
-            <a [routerLink]="['../genre/', cat?.id]">
-                <h2 class="spacing spacing-around-vertical">{{cat?.metaInfo?.title}}</h2>
-            </a>
-        </div>
+<div class="flex-container primary-lightest-grad spacing-v">
+  <div class="row">
+    <div
+      class="featured-articles relative spacing-around-v border-round col-sm-12 col-md-4 col-lg-3"
+      *ngFor="let cat of allCategories"
+      [style.background]="'url(' + cat?.image?.src + ')'"
+    >
+      <a [routerLink]="['../genre/', cat?.id]">
+        <h2 class="spacing spacing-around-v">
+          {{ cat?.metaInfo?.title }}
+        </h2>
+      </a>
     </div>
+  </div>
 </div>
 
 <!-- Footer show articles slideshow -->
-<div *ngIf="footerShowArticles && footerShowArticles.length" class="flex-container spacing-around-vertical">
-    <div class="row">
-        <anu-articles-slideshow class="container" [articles]="footerShowArticles" [isRowlayout]="false"
-            [articleHref]="'./'" [size]="'sm'"></anu-articles-slideshow>
-    </div>
+<div
+  *ngIf="footerShowArticles && footerShowArticles.length"
+  class="flex-container spacing-around-v"
+>
+  <div class="row">
+    <anu-articles-slideshow
+      class="container"
+      [articles]="footerShowArticles"
+      [isRowlayout]="false"
+      [articleHref]="'./'"
+      [size]="'sm'"
+    ></anu-articles-slideshow>
+  </div>
 </div>
 
-<anu-social-media-share-buttons [fullscreenMode]="true"></anu-social-media-share-buttons>
+<anu-social-media-share-buttons
+  [fullscreenMode]="true"
+></anu-social-media-share-buttons>

@@ -1,7 +1,7 @@
 import { AppConfig } from '@annuadvent/ngx-core/app-config';
 
 export const appConfig: AppConfig = {
-  name: 'annuadvent',
+  name: 'Annu Advent',
   copyrightText: 'copyright©annuadvent. All rights reserved.',
   themeName: 'skyBlue',
   apiBaseUrl: 'https://www.annuadvent.com', // When running prod on hosting server
@@ -59,5 +59,5 @@ With Annu Advent App as your trusted guide, the pursuit of knowledge knows no bo
     twitter: 'https://twitter.com/annuadvent',
     linkedin: 'https://www.linkedin.com/company/annuadvent',
     instagram: 'https://www.instagram.com/annuadvent/',
-  }
+  },
 };

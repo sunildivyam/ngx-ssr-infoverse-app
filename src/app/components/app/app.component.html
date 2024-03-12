@@ -1,14 +1,40 @@
-<div class="app-container container">
-  <anu-spinner id="app-spinner" [fullscreen]="true" [show]="appSpinner.isLoading" [mode]="SpinnerMode.Progress"
-    size="md"></anu-spinner>
+<div class="app-container container" [style.marginTop]="menuHeight + 'px'">
+  <anu-spinner
+    id="app-spinner"
+    [fullscreen]="true"
+    [show]="appSpinner.isLoading"
+    [mode]="SpinnerMode.Progress"
+    size="md"
+  ></anu-spinner>
   <!-- App Header -->
-  <anu-menu class="flex-container primary-dark-grad center" [items]="mainMenuItems" [logoWidth]="'60px'"
-    [logoUrl]="'/assets/annu-advent-logo.png'" [heading]="appConfig.name || ''"
-    [subHeading]="appConfig.metaInfo.title || ''" (openStatusChanged)="mainMenuOpenStatusChanged($event)"
-    [opened]="isMainNavOpen" [headingHref]="['./']">
-    <anu-login-status (profileClicked)="loginStatusClicked()" (signOutClicked)="loginStatusClicked()"
-      (signInClicked)="loginStatusClicked()" [loginPageUrl]="appConfig.loginUrl || ''"
-      [profilePageUrl]="appConfig.profileUrl || ''" [loggedOutPageUrl]="appConfig.logoutUrl || ''">
+  <anu-menu
+    (onResizeMenu)="onMainMenuResize($event)"
+    class="flex-container center primary-deep-dark-grad accent-deep-light shadow"
+    [items]="mainMenuItems"
+    [logoWidth]="'60px'"
+    [logoUrl]="'/assets/annu-advent-logo.png'"
+    [heading]="''"
+    [headingPrefix]="''"
+    [subHeading]=""
+    (openStatusChanged)="mainMenuOpenStatusChanged($event)"
+    [opened]="isMainNavOpen"
+    [enableSeparator]="true"
+    [headingHref]="['./']"
+    [subHeadingHref]="['./']"
+    [headingPrefixHref]="['./']"
+    [menuClassNames]="[]"
+    [menuItemClassNames]="['accent-deep-light', 'border-round']"
+  >
+    <anu-login-status
+      class="col-sm-12 spacing-h-half"
+      (profileClicked)="loginStatusClicked()"
+      (signOutClicked)="loginStatusClicked()"
+      (signInClicked)="loginStatusClicked()"
+      [loginPageUrl]="appConfig.loginUrl || ''"
+      [profilePageUrl]="appConfig.profileUrl || ''"
+      [loggedOutPageUrl]="appConfig.logoutUrl || ''"
+      [showLogoutBtn]="false"
+    >
     </anu-login-status>
   </anu-menu>
   <div class="flex-container center">
@@ -16,7 +42,17 @@
       <div class="col-12">
         <anu-breadcrumb></anu-breadcrumb>
       </div>
-      <anu-theme-font-resizer [fontSizes]="themeFontSizes"></anu-theme-font-resizer>
+      <anu-theme-font-resizer
+        [fontSizes]="themeFontSizes"
+      ></anu-theme-font-resizer>
+    </div>
+    <div class="row relative stretch right">
+      <a
+        href="https://rzp.io/l/annuadvent"
+        target="_blank"
+        class="shadow border-round spacing-half spacing-around-half"
+        >Donate</a
+      >
     </div>
   </div>
   <!-- App Content -->
@@ -26,8 +62,12 @@
 
   <!-- App Footer -->
   <div class="flex-container primary-lightest-grad center">
-    <footer class="container spacing-vertical">
-      <anu-footer-nav class="primary-lightest-grad" [copyrightText]="appConfig.copyrightText" [items]="footerNavItems">
+    <footer class="container spacing-v">
+      <anu-footer-nav
+        class="primary-lightest-grad"
+        [copyrightText]="appConfig.copyrightText"
+        [items]="footerNavItems"
+      >
       </anu-footer-nav>
 
       <div class="row">
@@ -35,7 +75,10 @@
         <div class="col-sm-12 col-md-4 col-lg-4">
           <div class="container center">
             <h3>Find us on Social Media</h3>
-            <anu-social-media-buttons class="row center" [buttons]="socialMediaButtons"></anu-social-media-buttons>
+            <anu-social-media-buttons
+              class="row center"
+              [buttons]="socialMediaButtons"
+            ></anu-social-media-buttons>
           </div>
         </div>
 
@@ -51,6 +94,12 @@
           <small class="container center">
             <a [routerLink]="appConfig?.tNcUrl">Terms and conditions</a>
             <a [routerLink]="appConfig?.privacyPolicyUrl">Privacy policy</a>
+            <a
+              href="https://rzp.io/l/annuadvent"
+              target="_blank"
+              class="shadow border-round spacing-half spacing-around-half"
+              >Donate</a
+            >
           </small>
         </div>
       </div>
