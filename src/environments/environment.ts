@@ -1,16 +1,17 @@
-import { AppConfig } from "@annuadvent/ngx-core/app-config";
-import { appConfig } from "../app/constants/app.config.development";
-import { firebaseConfig } from "../app/constants/firebase.config.development";
-import { openaiConfig } from "../app/constants/openai.config.development";
+import { AppConfig } from '@annuadvent/ngx-core/app-config';
+import { appConfig } from '../app/constants/app.config.development';
+import { firebaseConfig } from '../app/constants/firebase.config.development';
+import { openaiConfig } from '../app/constants/openai.config.development';
+import { development as keyConf } from '../../.secrets/secrets';
 
-firebaseConfig.app.apiKey = '';
-openaiConfig.apiKey = '';
-openaiConfig.organization = 'org-Cdw4eLOkxkrRo6ZOQFayrg4q';
+firebaseConfig.app.apiKey = keyConf.firebaseKey;
+openaiConfig.apiKey = keyConf.openAIOrg;
+openaiConfig.organization = keyConf.openAIOrg;
 
 const config: AppConfig = {
   ...appConfig,
   firebase: firebaseConfig,
-  openai: openaiConfig,
+  openai: openaiConfig
 };
 
 export const environment = {
@@ -18,7 +19,7 @@ export const environment = {
   staging: false,
   production: false,
   envConfiguration: 'development Configuration',
-  appConfig: config,
+  appConfig: config
 };
 
 /*

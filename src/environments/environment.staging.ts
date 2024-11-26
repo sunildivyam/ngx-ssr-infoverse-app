@@ -1,23 +1,24 @@
-import { appConfig } from "../app/constants/app.config.staging";
-import { firebaseConfig } from "../app/constants/firebase.config.staging";
-import { openaiConfig } from "../app/constants/openai.config.staging";
+import { appConfig } from '../app/constants/app.config.staging';
+import { firebaseConfig } from '../app/constants/firebase.config.staging';
+import { openaiConfig } from '../app/constants/openai.config.staging';
+import { staging as keyConf } from '../../.secrets/secrets';
 
-firebaseConfig.app.apiKey = '';
-openaiConfig.apiKey = '';
-openaiConfig.organization = 'org-Cdw4eLOkxkrRo6ZOQFayrg4q';
+firebaseConfig.app.apiKey = keyConf.firebaseKey;
+openaiConfig.apiKey = keyConf.openAIOrg;
+openaiConfig.organization = keyConf.openAIOrg;
 
 const config = {
   ...appConfig,
   firebase: firebaseConfig,
-  openai: openaiConfig,
-}
+  openai: openaiConfig
+};
 
 export const environment = {
   development: false,
   staging: true,
   production: false,
   envConfiguration: 'staging Configuration',
-  appConfig: config,
+  appConfig: config
 };
 
 /*

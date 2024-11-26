@@ -2,17 +2,17 @@ import {
   FireAppConfig,
   FireStorageConfig,
   FireStoreConfig,
-  FirebaseConfig,
-} from "@annuadvent/ngx-tools/fire-common";
-import { appConfig } from "./app.config.development";
-import { FIREBASE_AUTH_SIGNIN_METHODS } from "@annuadvent/ngx-tools/fire-auth";
+  FirebaseConfig
+} from '@annuadvent/ngx-tools/fire-common';
+import { appConfig } from './app.config.development';
+import { FIREBASE_AUTH_SIGNIN_METHODS } from '@annuadvent/ngx-tools/fire-auth';
 
 const ui = {
-  signInFlow: "redirect", // redirect/popup
+  signInFlow: 'popup', // redirect/popup
   siteName: appConfig.name,
   tosUrl: appConfig.tNcUrl, // Terms of service page url
   privacyPolicyUrl: appConfig.privacyPolicyUrl, // Privacy policy url
-  signInSuccessUrl: "/",
+  signInSuccessUrl: '/',
   // signInSuccessUrl: '/components/auth/login-status',  // User is redirected to this url after successful login.
 
   // Callback methods, on login events, like success, failure etc. and
@@ -20,7 +20,7 @@ const ui = {
   callbacks: {
     signInSuccessWithAuthResult: null, // set handler from Login component consumer.
     signInFailure: null, // set handler from Login component consumer.
-    uiShown: null, // set handler from Login component consumer.
+    uiShown: null // set handler from Login component consumer.
   },
   signInOptions: [
     // List of OAuth providers supported.
@@ -28,23 +28,23 @@ const ui = {
     {
       provider: FIREBASE_AUTH_SIGNIN_METHODS.EMAIL_PASSWORD,
       // signInMethod: firebase.auth.EmailAuthProvider.EMAIL_LINK_SIGN_IN_METHOD,
-      requireDisplayName: true,
+      requireDisplayName: true
     },
     // Using Phone number
     {
       provider: FIREBASE_AUTH_SIGNIN_METHODS.PHONE,
       recaptchaParameters: {
-        type: "image", // or 'audio'
-        size: "normal", // or 'invisible' or 'compact'
-        badge: "bottomleft", //' bottomright' or 'inline' applies to invisible.
+        type: 'image', // or 'audio'
+        size: 'normal', // or 'invisible' or 'compact'
+        badge: 'bottomleft' //' bottomright' or 'inline' applies to invisible.
       },
-      defaultCountry: "IN",
-      loginHint: "+91-1234567890",
+      defaultCountry: 'IN',
+      loginHint: '+91-1234567890'
     },
     // Sign in with Google
     {
-      provider: FIREBASE_AUTH_SIGNIN_METHODS.GOOGLE,
-    },
+      provider: FIREBASE_AUTH_SIGNIN_METHODS.GOOGLE
+    }
     // // Sign in with Facebook
     // {
     //   provider: FIREBASE_AUTH_SIGNIN_METHODS.FACEBOOK,
@@ -58,41 +58,41 @@ const ui = {
     // {
     //   provider: FIREBASE_AUTH_SIGNIN_METHODS.GITHUB,
     // },
-  ],
+  ]
 };
 
 const app: FireAppConfig = {
-  projectId: "annu-business",
-  appId: "1:140977750488:web:870df7cc0848f6274ab2ad",
-  storageBucket: "annu-business.appspot.com",
-  locationId: "us-central",
-  apiKey: "",
-  authDomain: "annu-business.firebaseapp.com",
-  messagingSenderId: "140977750488",
-  measurementId: "G-36J6R2BDWD",
+  projectId: 'annu-business',
+  appId: '1:140977750488:web:870df7cc0848f6274ab2ad',
+  storageBucket: 'annu-business.appspot.com',
+  locationId: 'us-central',
+  apiKey: '',
+  authDomain: 'annu-business.firebaseapp.com',
+  messagingSenderId: '140977750488',
+  measurementId: 'G-36J6R2BDWD'
 };
 
 const storage: FireStorageConfig = {
-  baseStorageUrl: "annu-business/articles",
+  baseStorageUrl: 'annu-business/articles',
   fireStorageBaseApiUrl:
-    "https://firebasestorage.googleapis.com/v0/b/annu-business.appspot.com/o",
+    'https://firebasestorage.googleapis.com/v0/b/annu-business.appspot.com/o',
   imageDimensions: {
     maxKBs: 1024,
     maxWidth: 900,
     maxHeight: 450,
     minWidth: 100,
-    minHeight: 100,
-  },
+    minHeight: 100
+  }
 };
 
 const store: FireStoreConfig = {
   firestoreBaseApiUrl:
-    "https://firestore.googleapis.com/v1/projects/annu-business/databases/(default)/documents",
+    'https://firestore.googleapis.com/v1/projects/annu-business/databases/(default)/documents'
 };
 
 export const firebaseConfig: FirebaseConfig = {
   app,
   ui,
   store,
-  storage,
+  storage
 };
